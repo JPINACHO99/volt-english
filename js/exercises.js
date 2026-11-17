@@ -141,13 +141,38 @@
     function summary() {
       if (cfg.sec !== 'cards') V.addStat(cfg.sec === 'review' ? 'grammar' : cfg.sec, cfg.sec === 'review' ? 0 : ok, cfg.sec === 'review' ? 0 : tot); else { S.days[V.today()] = (S.days[V.today()] || 0) + 1; V.save(); }
       const pct = tot ? Math.round((ok * 100) / tot) : null;
-      root.append(h('div', { class: 'prog' }, h('i', { style: 'width:100%' })), h('div', { class: 'card center' }, h('div', { style: 'font-size:2.6rem' }, pct == null ? '✅' : pct >= 80 ? '🏆' : pct >= 50 ? '👍' : '💪'),
+      const col = pct == null ? 'var(--good)' : pct >= 80 ? 'var(--good)' : pct >= 50 ? 'var(--ok)' : 'var(--bad)', C = 2 * Math.PI * 56;
+      const R = ringSvg(col, C), fg = R.fg;
+      const num = h('b', null, '0%');
+      const ring = pct == null ? h('div', { class: 'big-emoji' }, '✅') : h('div', { class: 'ring' }, R.svg, num);
+      requestAnimationFrame(() => setTimeout(() => {
+        if (pct == null) return; fg.style.strokeDashoffset = C * (1 - pct / 100);
+        const t0 = performance.now(); (function tick(t) { const k = Math.min(1, (t - t0) / 1100); num.textContent = Math.round(pct * (1 - Math.pow(1 - k, 3))) + '%'; if (k < 1) requestAnimationFrame(tick); })(t0);
+        if (pct >= 80) confetti();
+      }, 120));
+      root.append(h('div', { class: 'prog' }, h('i', { style: 'width:100%' })), h('div', { class: 'card center' }, ring, pct == null ? null : h('div', { class: 'big-emoji', style: 'font-size:1.8rem;animation-delay:.9s' }, pct >= 80 ? '🏆' : pct >= 50 ? '👍' : '💪'),
         h('h2', null, pct == null ? 'Session complete' : Math.round(ok * 10) / 10 + ' / ' + tot + ' correct (' + pct + '%)'),
         weak.length ? h('div', { style: 'text-align:left' }, h('h3', null, 'Weak points'), h('ul', null, [...new Set(weak)].slice(0, 8).map((w) => h('li', null, w))), h('p', { class: 'muted small' }, 'Wrong answers were added to “Review mistakes”.')) : (pct != null ? h('p', { class: 'muted' }, 'No weak points this time.') : null),
         h('div', { class: 'row', style: 'justify-content:center;margin-top:12px' }, cfg.again ? h('button', { class: 'btn sec', onclick: () => { history.back(); setTimeout(cfg.again, 60); } }, 'Practise again') : null, h('button', { class: 'btn', onclick: V.goHome }, 'Home'))));
     }
     V.go(() => ({ title: cfg.title, body: [root] }));
     step();
+  }
+
+  function ringSvg(col, C) {
+    const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 132 132'); svg.setAttribute('width', '132'); svg.setAttribute('height', '132');
+    const mk = (cls) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', 66); c.setAttribute('cy', 66); c.setAttribute('r', 56); c.setAttribute('class', cls); svg.append(c); return c; };
+    mk('bgc'); const fg = mk('fgc'); fg.style.stroke = col; fg.style.strokeDasharray = C; fg.style.strokeDashoffset = C;
+    return { svg, fg };
+  }
+  function confetti() {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#facc15', '#4ade80', '#60a5fa', '#f87171', '#c084fc'];
+    for (let i = 0; i < 40; i++) {
+      const p = h('i', { class: 'confetti', style: 'background:' + cols[i % 5] + ';--dx:' + Math.round(Math.random() * 520 - 260) + 'px;--dy:' + Math.round(Math.random() * 380 - 60) + 'px;--rot:' + Math.round(Math.random() * 720 - 360) + 'deg;animation-delay:' + Math.random() * 0.25 + 's' });
+      document.body.append(p); setTimeout(() => p.remove(), 1700);
+    }
   }
 
   /* ---------- shared widgets ---------- */
