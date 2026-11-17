@@ -80,3 +80,5 @@ del{color:var(--bad)}ins{color:var(--good);text-decoration:none;font-weight:600}
 .savew{border:1px solid var(--line);background:var(--card2);color:var(--txt);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600;white-space:nowrap;flex:none}
 .savew.on{border-color:var(--acc);color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--card2))}
 .wordrow{gap:8px;align-items:center;margin:6px 0}
+.scene.photo{margin:10px 0;position:relative;background:#111}.scene.photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.scene.photo figcaption{position:absolute;right:8px;bottom:6px;line-height:1.2;font-size:.7rem}.scene.photo figcaption a{color:#fff;background:rgba(0,0,0,.45);padding:2px 6px;border-radius:6px;text-decoration:none}

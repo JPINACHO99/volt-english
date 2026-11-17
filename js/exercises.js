@@ -128,7 +128,7 @@
     else if (sec === 'speaking') {
       const sc = D.scenes[topic];
       if (mode === 'describe') { const pool = sc.filter((x) => x.cap !== S.lastScene), s = pool[Math.floor(Math.random() * pool.length)]; S.lastScene = s.cap; V.save(); items = [{ type: 'speak', kind: 'describe', prompt: 'Describe this picture in as much detail as you can. Say what you can see, what is probably happening and how the people might feel.', scenes: [s], model: s.model }]; }
-      else if (mode === 'compare') { S.cmpTurn = ((S.cmpTurn || 0) + 1) % 2; const k = sc.length > 2 ? S.cmpTurn : 0; V.save(); items = [{ type: 'speak', kind: 'compare', prompt: k ? D.compareQ2[topic] : D.compareQ[topic], scenes: sc.slice(k * 2, k * 2 + 2), model: D.compareModel }]; }
+      else if (mode === 'compare') { const np = Math.floor(sc.length / 2); S.cmpTurn = ((S.cmpTurn || 0) + 1) % np; const k = S.cmpTurn; V.save(); items = [{ type: 'speak', kind: 'compare', prompt: [D.compareQ, D.compareQ2, D.compareQ3][k][topic], scenes: sc.slice(k * 2, k * 2 + 2), model: D.compareModel }]; }
       else {
         const sets = [D.speak[topic][level][mode], (((D.speak2 || {})[topic] || {})[level] || {})[mode]].filter(Boolean);
         const key = 'sp:' + topic + level + mode; S.turns = S.turns || {}; S.turns[key] = ((S.turns[key] || 0) + 1) % sets.length; V.save();
@@ -472,7 +472,7 @@
       const clock = h('span', { class: 'timer' }, '0:00'), ta = h('textarea', { placeholder: 'Your words will appear here. You can also type.' });
       const out = h('div');
       box.append(h('div', { class: 'row' }, h('span', { class: 'pill grow', style: 'flex:0 1 auto' }, D.help[it.kind].title), h('span', { class: 'grow' }), clock, h('button', { class: 'ic', 'aria-label': 'Help', onclick: () => V.helpSheet(it.kind) }, '?')),
-        it.scenes ? h('div', { class: it.scenes.length > 1 ? 'scenes' : '' }, it.scenes.map((s) => (s.svg ? h('div', { class: 'scene art', role: 'img', 'aria-label': s.cap, html: s.svg }) : h('div', { class: 'scene', style: 'background:' + s.bg, role: 'img', 'aria-label': s.cap }, s.items)))) : null,
+        it.scenes ? h('div', { class: it.scenes.length > 1 ? 'scenes' : '' }, it.scenes.map((s) => (s.img ? h('figure', { class: 'scene art photo' }, h('img', { src: s.img, alt: s.cap, loading: 'lazy', referrerpolicy: 'no-referrer' }), h('figcaption', null, h('a', { href: s.page, target: '_blank', rel: 'noopener' }, 'Photo: Unsplash'))) : s.svg ? h('div', { class: 'scene art', role: 'img', 'aria-label': s.cap, html: s.svg }) : h('div', { class: 'scene', style: 'background:' + s.bg, role: 'img', 'aria-label': s.cap }, s.items)))) : null,
         h('p', { class: 'text' }, h('b', null, it.prompt)), it.kind === 'mono' ? instr('Try to keep talking for about one minute.') : null,
         micBlock(ta, clock), h('p', { class: 'small muted', style: 'margin-bottom:4px' }, 'Your answer — read it before sending and fix anything the microphone got wrong:'), ta,
         checkBtn('Send for feedback', async (b) => {
