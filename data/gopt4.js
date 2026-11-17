@@ -1,6 +1,6 @@
 // Why each wrong option is wrong — grammar C2
 Object.assign(DATA.gopt, {
-"The design, ___ ingenious, proved too expensive to build.":["'Despite' needs a noun or -ing: despite being ingenious.","'However ingenious' would need a clause: however ingenious it was.","","'Nevertheless' is an adverb and can't introduce an adjective like this."],
+"The design, ___ ingenious, proved too expensive to build.":["'Despite' needs a noun or -ing: despite being ingenious.","","'However ingenious' would need a clause: however ingenious it was.","'Nevertheless' is an adverb and can't introduce an adjective like this."],
 "So severe ___ that the whole region was left without power.":["After 'So + adjective' at the start we need inversion: was the fault.","","Inversion is needed, and 'had' doesn't fit with 'severe'.","'Had the fault' doesn't make sense with an adjective: the verb is 'be'."],
 "She was passed ___ for promotion yet again.":["","'Passed by' means went past physically.","'Passed up' means you chose not to take an opportunity yourself.","'Passed through' means went through a place."],
 "Try ___ he might, he couldn't get the stain out.":["The fixed structure is 'Try as he might', not 'however'.","'Although' needs a full clause: although he tried.","","'Try so he might' is not correct."],
