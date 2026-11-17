@@ -1,0 +1,365 @@
+[
+{"id":"eng_B1","t":"eng","l":"B1","title":"The broken machine","lines":[
+["A","Hi Laura. Machine number three stopped working this morning."],
+["B","Oh no. What happened?"],
+["A","I'm not sure. It made a strange noise and then it stopped. I think the motor is too hot."],
+["B","Did you turn it off?"],
+["A","Yes, I turned it off at nine o'clock and I called the maintenance team."],
+["B","Good. When can they come?"],
+["A","They are coming at two this afternoon. Until then, we will use machine number five."],
+["B","OK. Please write a short report, so the manager knows about the problem."]],
+"q":[
+{"q":"What happened to machine number three?","a":"It made a strange noise and stopped working, probably because the motor was too hot.","k":[["noise","stopped","stop"],["motor","hot"]]},
+{"q":"What did the man do after the machine stopped?","a":"He turned it off at nine o'clock and called the maintenance team.","k":[["turned","off","switched"],["maintenance","called"]]},
+{"q":"What will they do until the maintenance team arrives?","a":"They will use machine number five, and he will write a short report for the manager.","k":[["five","another","other"],["report"]]}],
+"gaps":[{"s":"It made a strange ___ and then it stopped.","a":"noise"},{"s":"They are coming at ___ this afternoon.","a":"two"},{"s":"Please write a short ___, so the manager knows about the problem.","a":"report"}]},
+
+{"id":"eng_B2","t":"eng","l":"B2","title":"Changing the design","lines":[
+["A","Sarah, have you got a minute? I'd like to talk about the bracket design."],
+["B","Sure. Is there a problem with it?"],
+["A","The client wants it to be lighter. At the moment it weighs almost four kilos, and they're asking for three."],
+["B","We could switch from steel to aluminium, but that would increase the cost by about fifteen percent."],
+["A","That's what I thought. Another option is to keep the steel and remove material where the stress is low."],
+["B","That sounds cheaper. Have you run a simulation yet?"],
+["A","Not yet. I'll do it tomorrow and send you the results before the meeting on Thursday."],
+["B","Great. If the simulation looks good, we can present both options and let the client decide."]],
+"q":[
+{"q":"Why does the design need to change?","a":"The client wants the bracket to be lighter: it weighs almost four kilos and they want three.","k":[["lighter","weight","weighs","heavy"],["client","customer"]]},
+{"q":"What two solutions do they discuss?","a":"Switching from steel to aluminium, which costs about fifteen percent more, or keeping steel and removing material where the stress is low.","k":[["aluminium","aluminum"],["remove","removing","material"]]},
+{"q":"What will the man do before Thursday's meeting?","a":"He will run a simulation tomorrow and send her the results.","k":[["simulation"],["send","results"]]}],
+"gaps":[{"s":"That would increase the cost by about ___ percent.","a":"fifteen"},{"s":"Remove material where the ___ is low.","a":"stress"},{"s":"We can present both options and let the client ___.","a":"decide"}]},
+
+{"id":"eng_C1","t":"eng","l":"C1","title":"A delayed project","lines":[
+["A","I've been going through the schedule, and frankly, I don't see how we can hit the March deadline."],
+["B","I had a feeling you'd say that. Is it the supplier again?"],
+["A","Partly. The gearboxes are six weeks late, but that's not the whole story. We also underestimated how long the testing phase would take."],
+["B","So what are our options? I'd rather not go back to the client empty-handed."],
+["A","We could run some of the tests in parallel instead of one after another. It's riskier, but it might save us three weeks."],
+["B","And the rest of the delay?"],
+["A","Honestly, we'd need to bring in two more technicians, at least temporarily. Otherwise we're just hoping for the best."],
+["B","Right. Put the numbers together, and I'll make the case to management. But I want a realistic date this time, not an optimistic one."]],
+"q":[
+{"q":"What are the two causes of the delay?","a":"The gearboxes from the supplier are six weeks late, and the team underestimated how long the testing phase would take.","k":[["gearbox","gearboxes","supplier"],["testing","tests","underestimated"]]},
+{"q":"What does the man propose to recover time, and what is the drawback?","a":"Running some tests in parallel instead of in sequence, which is riskier but could save three weeks, and bringing in two more technicians temporarily.","k":[["parallel"],["risk","riskier","risky"],["technicians","staff","people"]]},
+{"q":"What is the woman's attitude at the end?","a":"She is willing to defend the plan to management, but she insists on a realistic date rather than an optimistic one.","k":[["realistic"],["management","case"]]}],
+"gaps":[{"s":"I don't see how we can hit the March ___.","a":"deadline"},{"s":"We could run some of the tests in ___ instead of one after another.","a":"parallel"},{"s":"I'd rather not go back to the client ___.","a":"empty-handed"}]},
+
+{"id":"eng_C2","t":"eng","l":"C2","title":"After the failure","lines":[
+["A","So, the report's finally in. It turns out the weld didn't fail because of the load at all."],
+["B","Really? Everyone was so sure we'd miscalculated the stresses."],
+["A","That was the convenient explanation. In fact, the root cause was fatigue. Tiny cracks had been spreading for months, and nobody picked them up, because the inspections were purely visual."],
+["B","So, strictly speaking, the design was sound, and it was the maintenance regime that let us down."],
+["A","Well, I wouldn't let the design off the hook entirely. Had we specified a smoother transition at the joint, the cracks might never have started in the first place."],
+["B","Fair point. What worries me is that there are a dozen identical structures out there, presumably in the same state."],
+["A","Exactly. I'm recommending ultrasonic testing on all of them within the month, whatever the cost. The alternative doesn't bear thinking about."],
+["B","I'll back you on that. It's a hard sell, but nowhere near as hard as explaining a second failure."]],
+"q":[
+{"q":"What was the real cause of the failure, and why was it not detected?","a":"Fatigue: tiny cracks had been spreading for months and went unnoticed because inspections were only visual.","k":[["fatigue","cracks"],["visual","inspection","inspections"]]},
+{"q":"Does the man think the design was completely free of blame? Explain.","a":"No. He says a smoother transition at the joint might have prevented the cracks from starting, so the design shares some responsibility.","k":[["design"],["smoother","transition","joint"]]},
+{"q":"What action is recommended and how do they justify the cost?","a":"Ultrasonic testing of all twelve identical structures within the month; it is expensive, but far less costly than explaining a second failure.","k":[["ultrasonic","testing"],["second failure","another failure","dozen","identical"]]}],
+"gaps":[{"s":"In fact, the root cause was ___.","a":"fatigue"},{"s":"I wouldn't let the design off the ___ entirely.","a":"hook"},{"s":"I'm recommending ___ testing on all of them within the month.","a":"ultrasonic"}]},
+
+{"id":"elec_B1","t":"elec","l":"B1","title":"No power in the kitchen","lines":[
+["A","Good morning. You called about a problem with the electricity?"],
+["B","Yes, thank you for coming. There is no power in the kitchen. The lights don't work and the fridge is off."],
+["A","Does the rest of the house have power?"],
+["B","Yes, everything else is fine. It happened last night when I turned on the oven and the kettle at the same time."],
+["A","I see. I think the circuit breaker switched off because there was too much load. Let me check the panel."],
+["B","Is it dangerous?"],
+["A","No, don't worry. The breaker protects the cables. But this circuit is very old, so I recommend a new one for the oven."],
+["B","OK. How much will it cost?"],
+["A","About one hundred and fifty euros. I can do it on Friday."]],
+"q":[
+{"q":"What is the problem in the house?","a":"There is no power in the kitchen: the lights don't work and the fridge is off, but the rest of the house is fine.","k":[["kitchen"],["power","electricity","lights","fridge"]]},
+{"q":"Why did the power go off?","a":"She turned on the oven and the kettle at the same time, so there was too much load and the circuit breaker switched off.","k":[["oven","kettle"],["breaker","load","too much"]]},
+{"q":"What does the electrician recommend, and what are the price and the day?","a":"A new circuit for the oven. It costs about 150 euros and he can do it on Friday.","k":[["new circuit","circuit"],["150","hundred and fifty","friday"]]}],
+"gaps":[{"s":"I think the circuit ___ switched off because there was too much load.","a":"breaker"},{"s":"The lights don't work and the ___ is off.","a":"fridge"},{"s":"I can do it on ___.","a":"Friday"}]},
+
+{"id":"elec_B2","t":"elec","l":"B2","title":"Solar panels at home","lines":[
+["A","So, you're thinking about installing solar panels on your roof."],
+["B","That's right. Our electricity bills have gone up a lot, and the roof faces south, so it seems like a good idea."],
+["A","It is. For a house like yours, I'd suggest a system of about five kilowatts. That would cover roughly seventy percent of what you use in a year."],
+["B","And what happens at night, or when it's cloudy?"],
+["A","You keep taking power from the grid, as usual. You could add a battery, but they're still expensive, so I'd wait a couple of years."],
+["B","How long would it take to get our money back?"],
+["A","Without a battery, around six years. After that, the energy is practically free, and the panels should last at least twenty-five years."],
+["B","That sounds reasonable. Could you send me a detailed quote?"]],
+"q":[
+{"q":"Why does the woman want solar panels?","a":"Her electricity bills have gone up a lot and her roof faces south, which is good for solar.","k":[["bills","expensive","cost"],["south","roof"]]},
+{"q":"What does the installer say about batteries?","a":"She could add one, but batteries are still expensive, so he would wait a couple of years; meanwhile she takes power from the grid at night.","k":[["expensive"],["wait","later","grid"]]},
+{"q":"How long does it take to recover the investment and how long do panels last?","a":"About six years without a battery, and the panels should last at least twenty-five years.","k":[["six"],["twenty-five","25"]]}],
+"gaps":[{"s":"I'd suggest a system of about five ___.","a":"kilowatts"},{"s":"You keep taking power from the ___, as usual.","a":"grid"},{"s":"Could you send me a detailed ___?","a":"quote"}]},
+
+{"id":"elec_C1","t":"elec","l":"C1","title":"The substation upgrade","lines":[
+["A","Thanks for joining the call. I wanted to go over the protection settings before we energise the new transformer."],
+["B","Good idea. I looked at your study last night. The short-circuit levels are higher than I expected."],
+["A","They are. Adding the second transformer almost doubles the fault current on the low-voltage side, which means some of the existing breakers are no longer adequate."],
+["B","How many are we talking about?"],
+["A","Four out of the twelve feeders. Their breaking capacity is twenty-five kiloamps, and we'd be looking at thirty-one in the worst case."],
+["B","That's not something we can ignore. Could we operate with the bus coupler open, so the transformers never run in parallel?"],
+["A","We could, as a temporary measure. It keeps the fault level down, but we lose the redundancy we were paying for."],
+["B","Then let's do that for now and order the new breakers. I'd rather lose redundancy for two months than rely on equipment that might not clear a fault."]],
+"q":[
+{"q":"What problem does the new transformer create?","a":"It almost doubles the fault current on the low-voltage side, so some existing breakers are no longer adequate.","k":[["fault current","short-circuit","short circuit"],["breakers","adequate","capacity"]]},
+{"q":"What temporary solution do they agree on, and what is its disadvantage?","a":"Operating with the bus coupler open so the transformers do not run in parallel; it keeps the fault level down but they lose redundancy.","k":[["coupler","open","parallel"],["redundancy"]]},
+{"q":"How many feeders are affected and what are the figures?","a":"Four of the twelve feeders: their breakers are rated at 25 kiloamps and the worst-case fault would be 31.","k":[["four"],["twenty-five","25","thirty-one","31"]]}],
+"gaps":[{"s":"I wanted to go over the protection settings before we ___ the new transformer.","a":"energise"},{"s":"Their breaking ___ is twenty-five kiloamps.","a":"capacity"},{"s":"We lose the ___ we were paying for.","a":"redundancy"}]},
+
+{"id":"elec_C2","t":"elec","l":"C2","title":"The grid of the future","lines":[
+["A","You've argued that our grids were designed for a world that no longer exists. What exactly do you mean by that?"],
+["B","Well, for a century, the logic was simple: a handful of enormous power stations pushed energy outwards, in one direction, to passive consumers. That assumption is now collapsing."],
+["A","Because of rooftop solar, presumably?"],
+["B","Solar, batteries, electric cars, you name it. Power now flows both ways, and the old protection schemes, which took the direction of the current for granted, can be fooled."],
+["A","Some would say the answer is simply to build more lines."],
+["B","That's the brute-force approach, and it's ruinously expensive. A smarter option is flexibility: paying people to shift their consumption, so that demand follows generation rather than the other way round."],
+["A","Isn't there a risk that we're making the system too complex to control?"],
+["B","Undoubtedly. But the alternative, clinging to a model built for coal, would be far more dangerous in the long run."]],
+"q":[
+{"q":"According to the expert, what assumption were traditional grids built on?","a":"That a few huge power stations sent energy in one direction to passive consumers.","k":[["one direction","one-way","outwards"],["power stations","passive","consumers"]]},
+{"q":"Why can old protection schemes fail today?","a":"Because power now flows both ways due to solar, batteries and electric cars, and those schemes took the direction of the current for granted.","k":[["both ways","two-way","bidirectional","both directions"],["direction","granted"]]},
+{"q":"What alternative to building more lines does she defend, and what risk does she accept?","a":"Flexibility: paying people to shift consumption so demand follows generation. She accepts that the system becomes more complex, but says keeping the old model would be more dangerous.","k":[["flexibility","shift","demand"],["complex","complexity"]]}],
+"gaps":[{"s":"That assumption is now ___.","a":"collapsing"},{"s":"That's the brute-force approach, and it's ___ expensive.","a":"ruinously"},{"s":"So that demand follows ___ rather than the other way round.","a":"generation"}]},
+
+{"id":"work_B1","t":"work","l":"B1","title":"The first day","lines":[
+["B","Hello! You must be Tom. Welcome to the company. I'm Emma, from human resources."],
+["A","Nice to meet you, Emma. I'm a little nervous."],
+["B","Don't worry, everyone is very friendly here. This is your desk, next to the window."],
+["A","Great. What time do people usually start?"],
+["B","We start at half past eight and finish at five. Lunch is from one to two, and there is a canteen on the first floor."],
+["A","And who is my manager?"],
+["B","Your manager is Mr Davis. He is in a meeting now, but he will see you at eleven."],
+["A","Perfect. Thank you for your help."]],
+"q":[
+{"q":"Who is Emma and what does she show Tom?","a":"She works in human resources and she shows him his desk, which is next to the window.","k":[["human resources","hr"],["desk","window"]]},
+{"q":"What are the working hours and when is lunch?","a":"They start at half past eight and finish at five. Lunch is from one to two in the canteen on the first floor.","k":[["half past eight","8:30","8.30","eight thirty"],["one to two","lunch","canteen"]]},
+{"q":"When will Tom meet his manager and why not now?","a":"At eleven, because Mr Davis is in a meeting now.","k":[["eleven","11"],["meeting"]]}],
+"gaps":[{"s":"This is your ___, next to the window.","a":"desk"},{"s":"There is a ___ on the first floor.","a":"canteen"},{"s":"He is in a ___ now, but he will see you at eleven.","a":"meeting"}]},
+
+{"id":"work_B2","t":"work","l":"B2","title":"The job interview","lines":[
+["B","Thanks for coming in, Mark. Could you start by telling me why you applied for this position?"],
+["A","Of course. I've been working as a technician for five years, and I feel ready for more responsibility. This role would let me lead a small team."],
+["B","Have you had any experience managing people?"],
+["A","Not officially, but last year I trained three new colleagues, and I organised the weekly schedule when my supervisor was away."],
+["B","That's useful. And what would you say is your biggest weakness?"],
+["A","I sometimes find it hard to delegate. I tend to do things myself to make sure they're done properly, but I'm learning to trust other people more."],
+["B","I appreciate your honesty. One last thing: the job involves travelling about one week a month. Would that be a problem?"],
+["A","Not at all. Actually, I'd enjoy that."]],
+"q":[
+{"q":"Why did Mark apply for the job?","a":"After five years as a technician he feels ready for more responsibility, and the role would let him lead a small team.","k":[["responsibility"],["lead","team"]]},
+{"q":"What experience does he mention that is related to management?","a":"He trained three new colleagues and organised the weekly schedule when his supervisor was away.","k":[["trained","training"],["schedule","organised","organized"]]},
+{"q":"What weakness does he admit, and what does the job require once a month?","a":"He finds it hard to delegate. The job involves travelling about one week a month.","k":[["delegate"],["travel","travelling","traveling"]]}],
+"gaps":[{"s":"I feel ready for more ___.","a":"responsibility"},{"s":"I sometimes find it hard to ___.","a":"delegate"},{"s":"I appreciate your ___.","a":"honesty"}]},
+
+{"id":"work_C1","t":"work","l":"C1","title":"Asking for a raise","lines":[
+["A","Thanks for making time, Helen. I'll get straight to the point: I'd like to discuss my salary."],
+["B","I thought that might be it. Go ahead."],
+["A","Over the past year I've taken on the whole northern region, on top of my existing accounts. My targets went up by forty percent, and I exceeded them. My pay, however, hasn't moved."],
+["B","Nobody's questioning your performance. The trouble is, budgets were frozen in January, and my hands are somewhat tied."],
+["A","I understand the constraints. But I've had an approach from another firm, and while I'd much rather stay, I can't ignore the difference indefinitely."],
+["B","I see. I can't promise a number today. What I can do is take this to the director this week and push for an exception."],
+["A","That's all I'm asking. And if a raise is off the table, I'd be open to other arrangements, such as extra leave or a clearer path to promotion."],
+["B","That gives me something to work with. Let's speak again on Monday."]],
+"q":[
+{"q":"What arguments does the man use to justify a raise?","a":"He has taken on the whole northern region on top of his accounts, his targets rose by forty percent and he exceeded them, yet his pay has not changed.","k":[["region","northern","accounts"],["targets","forty","40","exceeded"]]},
+{"q":"What obstacle does the manager mention, and what does she offer to do?","a":"Budgets were frozen in January, but she will take the request to the director this week and push for an exception.","k":[["budget","budgets","frozen"],["director","exception"]]},
+{"q":"What alternatives is he willing to accept?","a":"Other arrangements such as extra leave or a clearer path to promotion.","k":[["leave","holiday","days off"],["promotion"]]}],
+"gaps":[{"s":"Budgets were ___ in January.","a":"frozen"},{"s":"I've had an ___ from another firm.","a":"approach"},{"s":"And if a raise is off the ___, I'd be open to other arrangements.","a":"table"}]},
+
+{"id":"work_C2","t":"work","l":"C2","title":"Restructuring","lines":[
+["B","I gather the announcement didn't go down particularly well on your floor."],
+["A","That's putting it mildly. People heard the word restructuring and stopped listening. As far as they're concerned, it's redundancies dressed up in corporate language."],
+["B","Which is ironic, given that no one is actually losing their job."],
+["A","You and I know that. But the message was buried under so much jargon that it might as well have been written to cause panic."],
+["B","So what would you have done differently?"],
+["A","Led with the one thing people care about: your job is safe. Then explained what changes, and only then why. Instead, we opened with market headwinds and synergies."],
+["B","Point taken. Would it help if the director met the teams in person?"],
+["A","It would, provided she's prepared to take awkward questions rather than read from a script. Otherwise it'll only make matters worse."]],
+"q":[
+{"q":"How did employees interpret the announcement, and why?","a":"As redundancies in disguise: once they heard 'restructuring' they stopped listening, and the real message was buried under jargon.","k":[["redundancies","losing","job","layoffs","fired"],["jargon","language","buried"]]},
+{"q":"How would the man have structured the message?","a":"He would have started with the fact that jobs are safe, then explained what changes, and only then why.","k":[["safe"],["what changes","then","why","first","order"]]},
+{"q":"Under what condition would a meeting with the director help?","a":"Only if she is prepared to answer awkward questions instead of reading from a script; otherwise it would make things worse.","k":[["questions"],["script","worse"]]}],
+"gaps":[{"s":"It's redundancies ___ up in corporate language.","a":"dressed"},{"s":"We opened with market ___ and synergies.","a":"headwinds"},{"s":"Provided she's prepared to take ___ questions.","a":"awkward"}]},
+
+{"id":"daily_B1","t":"daily","l":"B1","title":"Plans for Saturday","lines":[
+["A","Hi Anna. Are you free on Saturday?"],
+["B","I think so. Why?"],
+["A","I want to go to the new market near the river. They sell fresh fruit, cheese and bread."],
+["B","That sounds nice. What time do you want to go?"],
+["A","It opens at nine, but I prefer to go at ten, after breakfast."],
+["B","OK. Can we go by bus? My car is at the garage."],
+["A","Sure. The number twelve bus stops in front of the market. After that, we can have lunch at my house."],
+["B","Perfect. I will bring a dessert."]],
+"q":[
+{"q":"Where does the man want to go, and what do they sell there?","a":"To the new market near the river, where they sell fresh fruit, cheese and bread.","k":[["market"],["fruit","cheese","bread"]]},
+{"q":"What time will they go and how will they get there?","a":"At ten, after breakfast, and they will go by bus (number twelve) because her car is at the garage.","k":[["ten","10"],["bus"]]},
+{"q":"What will they do after the market?","a":"They will have lunch at his house and she will bring a dessert.","k":[["lunch"],["dessert","house"]]}],
+"gaps":[{"s":"I want to go to the new ___ near the river.","a":"market"},{"s":"My car is at the ___.","a":"garage"},{"s":"I will bring a ___.","a":"dessert"}]},
+
+{"id":"daily_B2","t":"daily","l":"B2","title":"The noisy neighbours","lines":[
+["B","You look exhausted. Didn't you sleep well?"],
+["A","Hardly at all. The neighbours upstairs had a party until three in the morning. It's the third time this month."],
+["B","Have you spoken to them about it?"],
+["A","I knocked on their door last week, and they apologised, but obviously nothing has changed."],
+["B","Maybe you should write to the landlord. If several neighbours complain, he'll have to do something."],
+["A","I've thought about it, but I don't want to create a bad atmosphere in the building."],
+["B","I understand, but you can't go on like this. Why don't you talk to them once more, and if it happens again, then you write the letter?"],
+["A","That seems fair. I'll go up this evening, before they start again."]],
+"q":[
+{"q":"Why is the man so tired?","a":"His upstairs neighbours had a party until three in the morning, for the third time this month.","k":[["party","neighbours","neighbors","noise"],["three","third"]]},
+{"q":"What has he already done about it, and with what result?","a":"He knocked on their door last week and they apologised, but nothing has changed.","k":[["knocked","spoke","talked","door"],["nothing","changed","apologised","apologized"]]},
+{"q":"What plan do they agree on?","a":"He will talk to them once more this evening, and if it happens again he will write to the landlord.","k":[["talk","speak","once more","again"],["landlord","letter","write"]]}],
+"gaps":[{"s":"Maybe you should write to the ___.","a":"landlord"},{"s":"I don't want to create a bad ___ in the building.","a":"atmosphere"},{"s":"They ___, but obviously nothing has changed.","a":"apologised"}]},
+
+{"id":"daily_C1","t":"daily","l":"C1","title":"City or countryside","lines":[
+["B","So you're really going through with it? Leaving the city for good?"],
+["A","We've put an offer on a house in a village about forty minutes away. It's not exactly the middle of nowhere, but it feels like another planet."],
+["B","I can see the appeal, but won't you miss having everything on your doorstep?"],
+["A","That's what I thought at first. Then I realised how little of it I actually use. I haven't been to the theatre in two years, yet I pay a fortune to live near one."],
+["B","What about work, though?"],
+["A","I only need to be in the office twice a week now, which changes everything. The commute would have been unbearable five days a week."],
+["B","And the kids? Teenagers aren't known for their love of fresh air."],
+["A","They're less than thrilled, I'll admit. We've promised to review the decision after a year. If it truly isn't working, we'll think again."]],
+"q":[
+{"q":"Why does the man no longer value living in the city centre?","a":"He realised he hardly uses what the city offers: he hasn't been to the theatre in two years but pays a fortune to live near one.","k":[["use","uses","theatre","theater"],["pay","fortune","expensive"]]},
+{"q":"What has made the move practical from a work point of view?","a":"He only has to be in the office twice a week, so the forty-minute commute is acceptable.","k":[["twice","two days"],["commute","office"]]},
+{"q":"How do the children feel and what has the family agreed?","a":"The teenagers are not happy about it, so the family has promised to review the decision after a year.","k":[["not happy","less than thrilled","unhappy","don't like"],["review","year"]]}],
+"gaps":[{"s":"Won't you miss having everything on your ___?","a":"doorstep"},{"s":"The ___ would have been unbearable five days a week.","a":"commute"},{"s":"They're less than ___, I'll admit.","a":"thrilled"}]},
+
+{"id":"daily_C2","t":"daily","l":"C2","title":"Always connected","lines":[
+["A","I read your piece on switching off. You seem to think we've sleepwalked into something."],
+["B","I do. Nobody ever sat down and decided to be reachable sixteen hours a day. It crept up on us, one notification at a time."],
+["A","Yet most people would say their phone makes life easier."],
+["B","In countless small ways, it does. But convenience has a cost that's harder to measure. We've lost the ability to be bored, and boredom, oddly enough, is where a good deal of our thinking used to happen."],
+["A","So what's the remedy? Throwing the phone in a drawer?"],
+["B","Nothing so dramatic. I'm wary of solutions that rely on willpower alone, since the apps are engineered to defeat it. Small barriers work better: no phone in the bedroom, no notifications after eight."],
+["A","And does it work for you?"],
+["B","Most of the time. I still slip, but at least now I notice when I do, and that's half the battle."]],
+"q":[
+{"q":"How does the writer explain the way we became constantly reachable?","a":"Nobody decided it consciously; it crept up on us gradually, one notification at a time.","k":[["decided","decision","consciously","chose"],["gradually","crept","notification","little by little"]]},
+{"q":"What hidden cost of convenience does she identify?","a":"We have lost the ability to be bored, and boredom is where much of our thinking used to happen.","k":[["bored","boredom"],["thinking","think"]]},
+{"q":"Why does she distrust willpower, and what does she suggest instead?","a":"Because apps are engineered to defeat willpower; she prefers small barriers such as no phone in the bedroom and no notifications after eight.","k":[["engineered","designed","apps"],["barriers","bedroom","notifications"]]}],
+"gaps":[{"s":"You seem to think we've ___ into something.","a":"sleepwalked"},{"s":"I'm wary of solutions that rely on ___ alone.","a":"willpower"},{"s":"At least now I notice when I do, and that's half the ___.","a":"battle"}]},
+
+{"id":"cook_B1","t":"cook","l":"B1","title":"Making an omelette","lines":[
+["B","Dad, can you teach me how to make an omelette?"],
+["A","Of course. First, take three eggs and break them into a bowl."],
+["B","OK. And now?"],
+["A","Add a little salt and mix the eggs with a fork. Then heat some oil in the pan."],
+["B","How do I know when the pan is ready?"],
+["A","When the oil is hot, put in the eggs. Cook them for two minutes, and then add some cheese."],
+["B","Can I add tomatoes too?"],
+["A","Yes, but cut them into small pieces first. Finally, fold the omelette and put it on a plate."],
+["B","It looks great! Next time, I will cook for you."]],
+"q":[
+{"q":"What are the first steps to make the omelette?","a":"Break three eggs into a bowl, add a little salt and mix them with a fork.","k":[["eggs","bowl"],["salt","mix","fork"]]},
+{"q":"When do you put the eggs in the pan and how long do you cook them?","a":"When the oil is hot. You cook them for two minutes and then add cheese.","k":[["oil","hot"],["two minutes","2 minutes","two"]]},
+{"q":"What does the father say about tomatoes?","a":"She can add them, but she must cut them into small pieces first.","k":[["cut","small","pieces"]]}],
+"gaps":[{"s":"Break them into a ___.","a":"bowl"},{"s":"Mix the eggs with a ___.","a":"fork"},{"s":"Finally, ___ the omelette and put it on a plate.","a":"fold"}]},
+
+{"id":"cook_B2","t":"cook","l":"B2","title":"Dinner for eight","lines":[
+["A","I've invited eight people for dinner on Saturday, and I have no idea what to cook."],
+["B","Eight? That's brave. Is anyone vegetarian?"],
+["A","Two of them are, and one can't eat anything spicy."],
+["B","Then I'd make something everyone can share. What about a big vegetable lasagne? You can prepare it the day before and just heat it up."],
+["A","That would save me a lot of stress. And for the meat eaters?"],
+["B","Roast a chicken with lemon and herbs. It takes about an hour and a half, and it needs almost no attention."],
+["A","Good idea. I'm useless at desserts, though."],
+["B","Don't even try. Buy some good ice cream and serve it with fresh strawberries. Nobody will complain."]],
+"q":[
+{"q":"What makes cooking for the guests complicated?","a":"There are eight guests; two are vegetarian and one can't eat anything spicy.","k":[["vegetarian"],["spicy"]]},
+{"q":"Why does the woman recommend lasagne?","a":"Everyone can share it, and it can be prepared the day before and simply heated up, which saves stress.","k":[["day before","before","advance","ahead"],["heat","share","stress"]]},
+{"q":"What does she suggest for the meat eaters and for dessert?","a":"A roast chicken with lemon and herbs, which takes about an hour and a half, and good ice cream with fresh strawberries.","k":[["chicken"],["ice cream","strawberries"]]}],
+"gaps":[{"s":"What about a big vegetable ___?","a":"lasagne"},{"s":"Roast a chicken with lemon and ___.","a":"herbs"},{"s":"I'm ___ at desserts, though.","a":"useless"}]},
+
+{"id":"cook_C1","t":"cook","l":"C1","title":"The secret of good bread","lines":[
+["A","People assume baking bread is complicated, but there are really only four ingredients: flour, water, salt and time."],
+["B","Time being the one everybody tries to skip."],
+["A","Precisely. A slow fermentation, ideally overnight in the fridge, is what develops the flavour. If you rush it with extra yeast, the loaf rises, but it tastes of very little."],
+["B","My loaves always come out dense. What am I doing wrong?"],
+["A","Most likely the dough is too dry, or you're not letting it rest long enough. A wetter dough is harder to handle, but it gives you those big, open holes."],
+["B","And the crust? Mine never gets that deep colour."],
+["A","That's down to steam. Professional ovens inject it; at home, you can bake inside a heavy pot with the lid on for the first twenty minutes."],
+["B","So the pot traps the moisture from the dough itself. That's rather clever."]],
+"q":[
+{"q":"According to the baker, what is the most neglected ingredient and why does it matter?","a":"Time: a slow fermentation, ideally overnight in the fridge, develops the flavour, while rushing it with extra yeast gives a loaf that tastes of little.","k":[["time","slow","fermentation"],["flavour","flavor","taste"]]},
+{"q":"What are the probable causes of a dense loaf?","a":"The dough is too dry or it has not rested long enough; a wetter dough gives big open holes.","k":[["dry","wetter","water"],["rest","resting","long enough"]]},
+{"q":"How can you get a good crust at home?","a":"By baking inside a heavy pot with the lid on for the first twenty minutes, so it traps the steam from the dough.","k":[["pot","lid"],["steam","moisture"]]}],
+"gaps":[{"s":"A slow ___, ideally overnight in the fridge, is what develops the flavour.","a":"fermentation"},{"s":"My loaves always come out ___.","a":"dense"},{"s":"That's down to ___.","a":"steam"}]},
+
+{"id":"cook_C2","t":"cook","l":"C2","title":"Tradition on a plate","lines":[
+["B","Your restaurant has been accused of betraying traditional cuisine. Does that criticism sting?"],
+["A","It used to. Now I find it slightly absurd. The dishes people defend as timeless were, more often than not, invented a couple of generations ago, with ingredients that had arrived from the other side of the world."],
+["B","So authenticity is a myth?"],
+["A","Not a myth, but a moving target. Tomatoes were once a suspicious novelty in Europe. Cooking has always evolved by borrowing, and to freeze it at an arbitrary date is nostalgia, not respect."],
+["B","Yet surely something is lost when a grandmother's recipe gets deconstructed into foam."],
+["A","Absolutely, when it's done for show. Technique for its own sake is as empty as tradition for its own sake. The test is brutally simple: is the dish more delicious, or merely more clever?"],
+["B","And how often do you fail that test?"],
+["A","More often than I'd care to admit. But the failures never reach the menu."]],
+"q":[
+{"q":"Why does the chef consider the criticism absurd?","a":"Because supposedly timeless dishes were often invented only a couple of generations ago, using ingredients that came from far away.","k":[["invented","recent","generations"],["ingredients","other side","abroad","far"]]},
+{"q":"What does he mean by calling authenticity 'a moving target'?","a":"That cuisine has always evolved by borrowing, as with tomatoes in Europe, so fixing it at an arbitrary date is nostalgia rather than respect.","k":[["evolved","evolves","borrowing","change","changes"],["nostalgia","date","tomatoes"]]},
+{"q":"What test does he apply to a new dish?","a":"Whether it is more delicious or merely more clever; technique for its own sake is as empty as tradition for its own sake.","k":[["delicious","taste","tastier"],["clever","show","technique"]]}],
+"gaps":[{"s":"Does that criticism ___?","a":"sting"},{"s":"Not a myth, but a moving ___.","a":"target"},{"s":"More often than I'd care to ___.","a":"admit"}]},
+
+{"id":"foot_B1","t":"foot","l":"B1","title":"The match on Sunday","lines":[
+["A","Did you watch the match on Sunday?"],
+["B","Yes, I watched it at home with my brother. It was a great game."],
+["A","I missed it because I was working. What was the score?"],
+["B","We won two one. The other team scored first, in the first half."],
+["A","And who scored our goals?"],
+["B","The new striker scored both of them. The second goal was in the last minute."],
+["A","Wow. So we are second in the league now?"],
+["B","Yes, only two points behind the leaders. The next match is on Saturday, at home."],
+["A","This time I will watch it, for sure."]],
+"q":[
+{"q":"Why didn't the man see the match, and what was the result?","a":"He was working. His team won two one.","k":[["working","work"],["two one","2-1","2 1","won"]]},
+{"q":"How were the goals scored?","a":"The other team scored first in the first half, and the new striker scored both goals, the second in the last minute.","k":[["striker","both","two goals"],["last minute","first half","first"]]},
+{"q":"What is the team's position and when is the next match?","a":"They are second in the league, two points behind the leaders, and the next match is on Saturday at home.","k":[["second"],["saturday"]]}],
+"gaps":[{"s":"What was the ___?","a":"score"},{"s":"The new ___ scored both of them.","a":"striker"},{"s":"Only two points behind the ___.","a":"leaders"}]},
+
+{"id":"foot_B2","t":"foot","l":"B2","title":"A new coach","lines":[
+["B","So, what do you think of the new coach? Three wins in a row is not bad."],
+["A","I'm impressed, to be honest. The team looks completely different. They press much higher, and they don't give the ball away so easily."],
+["B","True, but they've only played against teams from the bottom of the table."],
+["A","Fair enough. The real test is next week, away against the champions."],
+["B","What I like most is that he's giving young players a chance. That boy on the left wing is only eighteen."],
+["A","And he's already the fastest player in the squad. If he stays fit, he could be worth a fortune in a couple of years."],
+["B","Let's not get carried away. Remember what happened last season after a good start."],
+["A","Don't remind me. We finished twelfth."]],
+"q":[
+{"q":"What has changed in the team since the new coach arrived?","a":"They have won three matches in a row, they press much higher and they don't lose the ball so easily.","k":[["press","higher"],["ball","three wins","three"]]},
+{"q":"Why is the woman cautious about the results?","a":"Because they have only played against teams from the bottom of the table, and last season they started well but finished twelfth.","k":[["bottom","weak","table"],["last season","twelfth"]]},
+{"q":"What do they say about the young left winger?","a":"He is only eighteen, he is already the fastest player in the squad, and he could be worth a fortune in a couple of years if he stays fit.","k":[["eighteen","18","young"],["fastest","fast","fortune"]]}],
+"gaps":[{"s":"They've only played against teams from the bottom of the ___.","a":"table"},{"s":"He's already the fastest player in the ___.","a":"squad"},{"s":"Let's not get ___ away.","a":"carried"}]},
+
+{"id":"foot_C1","t":"foot","l":"C1","title":"Money in football","lines":[
+["A","Another transfer record broken this summer. A hundred and eighty million for one player. Has the game lost its mind?"],
+["B","It certainly looks that way, though the clubs would argue it's just the market. Television money keeps rising, and it has to go somewhere."],
+["A","It goes to a tiny group of clubs, which is precisely the problem. The same four or five teams win everything, and the rest are there to make up the numbers."],
+["B","Financial rules were supposed to prevent that."],
+["A","In theory. In practice, the richest clubs can afford the best lawyers, so the rules bite everyone except the ones they were aimed at."],
+["B","Would a salary cap work, like in American sports?"],
+["A","It might, but only if every major league adopted it at once. Otherwise the top players would simply move wherever there's no cap."],
+["B","So we're stuck. Still, people keep watching."],
+["A","They do, for now. But a competition where the outcome is predictable won't hold its audience forever."]],
+"q":[
+{"q":"Where does the money come from and what problem does its distribution create?","a":"From rising television money, which goes to a tiny group of clubs, so the same four or five teams win everything.","k":[["television","tv"],["few","tiny","same","four or five"]]},
+{"q":"Why have financial rules failed, according to the man?","a":"Because the richest clubs can afford the best lawyers, so the rules affect everyone except the clubs they were aimed at.","k":[["lawyers"],["richest","rich","except"]]},
+{"q":"What is the weakness of a salary cap?","a":"It would only work if every major league adopted it at the same time; otherwise top players would move to leagues without a cap.","k":[["every","all","at once","same time"],["move","players","leave"]]}],
+"gaps":[{"s":"The rest are there to make up the ___.","a":"numbers"},{"s":"Would a salary ___ work, like in American sports?","a":"cap"},{"s":"A competition where the outcome is ___ won't hold its audience forever.","a":"predictable"}]},
+
+{"id":"foot_C2","t":"foot","l":"C2","title":"The decline of the number ten","lines":[
+["B","You've written that the classic playmaker, the number ten, is all but extinct. Isn't that a little melodramatic?"],
+["A","Perhaps, but look at the evidence. The modern game leaves no room for a player who strolls around waiting for inspiration. Pressing systems demand that all eleven work without the ball."],
+["B","So the artists have been sacrificed for athletes."],
+["A","Not sacrificed, so much as relocated. The creativity is still there; it has simply moved deeper, to midfielders who dictate play from in front of the defence, or wider, to forwards who cut inside."],
+["B","Do you mourn the change?"],
+["A","As a romantic, yes. There was something gloriously inefficient about a player who did nothing for eighty minutes and then won the match with a single pass."],
+["B","And as an analyst?"],
+["A","As an analyst, I have to concede that today's teams are better in almost every measurable respect. Whether they're more beautiful to watch is another matter entirely."]],
+"q":[
+{"q":"Why has the traditional number ten disappeared, according to the writer?","a":"Because modern pressing systems require all eleven players to work without the ball, leaving no room for a player who waits for inspiration.","k":[["pressing","press"],["without the ball","work","all eleven","everyone"]]},
+{"q":"Where has the creativity gone?","a":"It has moved deeper, to midfielders who dictate play in front of the defence, or wider, to forwards who cut inside.","k":[["deeper","midfielders","midfield"],["wider","forwards","cut inside","wingers"]]},
+{"q":"How do his views as a romantic and as an analyst differ?","a":"As a romantic he misses the gloriously inefficient genius who decided a match with one pass; as an analyst he admits modern teams are better in almost every measurable way, though not necessarily more beautiful.","k":[["romantic","misses","mourn","inefficient"],["analyst","better","measurable"]]}],
+"gaps":[{"s":"The classic playmaker, the number ten, is all but ___.","a":"extinct"},{"s":"Not sacrificed, so much as ___.","a":"relocated"},{"s":"I have to ___ that today's teams are better.","a":"concede"}]}
+]
