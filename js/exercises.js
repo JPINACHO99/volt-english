@@ -18,6 +18,7 @@
     if (ref.k === 'g') return grammarItem(ref.i);
     if (ref.k === 'v') return defineItem(ref.t, ref.l, ref.i);
     if (ref.k === 'r') { const r = D.reading.find((x) => x.id === ref.id), q = r.mc[ref.q]; return { type: 'choice', ref, context: r, prompt: q.q, options: q.o, answer: q.a, instr: 'Read the text again if you need to, then answer.' }; }
+    if (ref.k === 'p') return phrasalItem(ref.i, ref.m);
     if (ref.k === 'l') { const a = D.listening.find((x) => x.id === ref.id), g = a.gaps[ref.i]; return { type: 'input', ref, audio: a, sentence: g.s, answers: [g.a], instr: 'Listen and write the exact word you hear.' }; }
   }
 
@@ -29,6 +30,27 @@
     if (g[0] === 'open') return { type: 'input', ref, note, sentence: g[3], answers: g[4], instr: 'Write ONE word in the gap.' };
     if (g[0] === 'wf') return { type: 'input', ref, note, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
     return { type: 'input', ref, note, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
+  }
+  const pvPlain = (ex) => ex.replace(/[\[\]]/g, '');
+  function phrasalItem(i, m) {
+    const p = D.phrasal[i], ref = { k: 'p', i, m }, same = D.phrasal.map((x, j) => j).filter((j) => j !== i && D.phrasal[j][1] === p[1] && D.phrasal[j][0] !== p[0]);
+    const others = shuffle(same).slice(0, 3), note = p[0] + ' = ' + p[2] + '. Example: ' + pvPlain(p[3]);
+    if (m === 'm') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, say: p[0], prompt: pvPlain(p[3]), sub: 'What does “' + p[0] + '” mean here?', options: o.map((j) => D.phrasal[j][2]), answer: o.indexOf(i), instr: 'Choose the meaning of the phrasal verb.' }; }
+    if (m === 'c') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, prompt: 'Which phrasal verb means: “' + p[2] + '”?', options: o.map((j) => D.phrasal[j][0]), answer: o.indexOf(i), instr: 'Choose the phrasal verb.' }; }
+    const parts = p[3].match(/\[[^\]]+\]/g), particle = p[0].split(' ').slice(1).join(' ');
+    let sentence;
+    if (parts.length > 1) sentence = p[3].replace(parts[parts.length - 1], '___').replace(/[\[\]]/g, '');
+    else { const words = parts[0].slice(1, -1).split(' '); sentence = p[3].replace(parts[0], words[0] + ' ___'); }
+    return { type: 'input', ref, note, hint: p[2], sentence, answers: [particle], instr: 'Complete the phrasal verb with the missing particle(s).' };
+  }
+  function phrasalList(level) {
+    const all = D.phrasal.filter((p) => p[1] === level).sort((a, b) => a[0].localeCompare(b[0])), box = h('div');
+    const draw = (q) => box.replaceChildren(all.filter((p) => !q || (p[0] + ' ' + p[2]).toLowerCase().includes(q)).map((p) => h('div', { class: 'card', style: 'margin:8px 0;padding:12px' },
+      h('div', { class: 'row' }, h('b', { class: 'grow' }, p[0]), V.sayBtn(p[0]), h('button', { class: 'ic', title: 'Add to My words', onclick: (e) => { V.addMyWord(p[0], p[2], pvPlain(p[3])); e.target.textContent = '✓'; } }, '＋')),
+      h('div', null, p[2]), h('div', { class: 'muted small' }, '“' + pvPlain(p[3]) + '”'))));
+    const search = h('input', { type: 'text', placeholder: 'Search a verb or a meaning…', oninput: () => draw(search.value.trim().toLowerCase()) });
+    draw('');
+    V.go(() => ({ title: 'Phrasal verbs · ' + level, body: [h('p', { class: 'muted' }, all.length + ' phrasal verbs at this level.'), search, box] }));
   }
   function defineItem(t, l, i) {
     const w = D.vocab[t][l].w[i];
@@ -43,7 +65,12 @@
       if (pick) { S.lastItem = pick.id; V.save(); }
       return pick;
     };
-    if (sec === 'grammar') {
+    if (sec === 'phrasal') {
+      if (mode === 'list') return phrasalList(level);
+      const idx = shuffle(D.phrasal.map((p, i) => i).filter((i) => D.phrasal[i][1] === level));
+      if (mode === 'pcards') return V.startCards(idx.slice(0, 15).map((i) => { const p = D.phrasal[i]; V.srsAdd(p[0], p[2], pvPlain(p[3])); return p[0]; }));
+      items = idx.slice(0, 10).map((i) => phrasalItem(i, mode === 'meaning' ? 'm' : mode === 'choose' ? 'c' : 'p'));
+    } else if (sec === 'grammar') {
       let idx = D.grammar.map((g, i) => i).filter((i) => D.grammar[i][1] === level && (mode === 'mix' || D.grammar[i][0] === mode));
       idx = shuffle(idx).sort((a, b) => (D.grammar[b][2] === topic) - (D.grammar[a][2] === topic)).slice(0, 10);
       items = idx.map(grammarItem);
@@ -65,7 +92,7 @@
     }
     items = items.filter((x) => x && (x.type.indexOf('listen') ? true : x.a) && (/readmc|gaptext|match/.test(x.type) ? x.r : true));
     const sn = V.SECTIONS.find((s) => s.id === sec);
-    run({ sec, level, title: sn.n + ' · ' + level + ' · ' + topicName(topic), items, again: () => V.start(sec, level, topic, mode) });
+    run({ sec, level, title: sn.n + ' · ' + level + (topic ? ' · ' + topicName(topic) : ''), items, again: () => V.start(sec, level, topic, mode) });
   };
   V.startReview = function () {
     const items = shuffle(Object.keys(S.errors)).slice(0, 10).map((k) => { try { return itemFromRef(JSON.parse(k)); } catch (e) { delete S.errors[k]; return null; } }).filter(Boolean);
@@ -120,6 +147,7 @@
     return h('div', { class: 'text' }, h('h2', null, r.title), r.p.map((p, i) => h('p', null, labels ? h('b', { class: 'kw' }, 'ABC'[i] + '  ') : null, V.tappable(p))));
   }
   function checkBtn(label, fn) { const b = h('button', { class: 'btn', onclick: () => fn(b) }, label || 'Check'); return h('div', { class: 'row end', style: 'margin-top:12px' }, b); }
+  function hintBtn(hint) { if (!hint) return null; const b = h('button', { class: 'btn ghost', onclick: () => b.replaceWith(h('p', { class: 'muted' }, '💡 Meaning: ' + hint)) }, '💡 See the meaning'); return b; }
   function why(note) { return note ? h('div', { class: 'fb na' }, h('span', { class: 'tag na' }, 'Why'), h('div', null, note)) : null; }
   function verdictLine(ok, text) { return h('div', { class: 'fb ' + (ok ? 'good' : 'bad') }, h('span', { class: 'tag ' + (ok ? 'good' : 'bad') }, ok ? '✓ Correct' : '✗ Not quite'), text ? h('div', null, text) : null); }
 
@@ -180,7 +208,7 @@
     choice(it, box, ctx) {
       let sel = -1, done = false;
       const opts = it.options.map((o, i) => h('button', { class: 'opt', onclick: () => { if (done) return; sel = i; opts.forEach((b, j) => b.classList.toggle('sel', j === i)); } }, o));
-      box.append(instr(it.instr), it.context ? h('details', null, h('summary', null, 'Show the text: ' + it.context.title), readingText(it.context)) : null, h('p', { class: 'text' }, h('b', null, it.prompt)), h('div', { class: 'opts' }, opts),
+      box.append(instr(it.instr), it.context ? h('details', null, h('summary', null, 'Show the text: ' + it.context.title), readingText(it.context)) : null, h('p', { class: 'text' }, h('b', null, it.prompt)), it.sub ? h('p', null, it.sub) : null, h('div', { class: 'opts' }, opts),
         checkBtn('Check', (b) => {
           if (sel < 0 || done) return; done = true; b.disabled = true;
           const ok = sel === it.answer; opts[it.answer].classList.add('good'); if (!ok) opts[sel].classList.add('bad');
@@ -203,7 +231,7 @@
       const btn = checkBtn('Check', go);
       inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(btn.firstChild); });
       box.append(instr(it.instr), it.audio ? audioBlock(it.audio) : null, it.pre ? h('p', { class: 'text' }, it.pre) : null, it.root ? h('p', null, h('span', { class: 'pill kw' }, it.root)) : null,
-        h('p', { class: 'text' }, parts[0], inp, parts[1] || ''), btn);
+        h('p', { class: 'text' }, parts[0], inp, parts[1] || ''), hintBtn(it.hint), btn);
       setTimeout(() => inp.focus(), 50);
     },
     gappara(it, box, ctx) {

@@ -13,6 +13,7 @@
     { id: 'reading', n: 'Reading', e: '📖', d: 'Cambridge-style reading tasks', modes: [['mc', 'Comprehension questions', '❓'], ['gapped', 'Gapped text', '🧩', 'Put the missing sentences back'], ['match', 'Matching', '🔗', 'Match statements to paragraphs']] },
     { id: 'writing', n: 'Writing', e: '✍️', d: 'Essays, emails, reports and more', modes: [['essay', 'Essay', '📝'], ['task', 'Second task', '📨']] },
     { id: 'grammar', n: 'Grammar', e: '🧠', d: 'Use of English', modes: [['mc', 'Multiple choice', '🔘'], ['open', 'Open gap', '␣', 'One word per gap'], ['wf', 'Word formation', '🔤'], ['kt', 'Key word transformation', '🔁'], ['mix', 'Mixed practice', '🎲']] },
+    { id: 'phrasal', n: 'Phrasal verbs', e: '🧲', d: 'Meanings, particles and usage', noTopic: true, modes: [['list', 'Browse & learn', '📚', 'All the verbs of this level with meaning and example'], ['meaning', 'Choose the meaning', '💡'], ['particle', 'Complete the particle', '🧩', 'get ___ , put ___ with…'], ['choose', 'Choose the phrasal verb', '🎯'], ['pcards', 'Flashcards', '🃏']] },
     { id: 'vocab', n: 'Vocabulary', e: '🗂️', d: 'Words by topic', modes: [['bank', 'Fill the gaps', '🧩', 'With the list of words'], ['nobank', 'Fill the gaps (no help)', '🔥', 'Without the list of words'], ['define', 'Definition → word', '💡'], ['cards', 'Flashcards', '🃏']] }
   ]);
 
@@ -175,7 +176,7 @@
   }
   function levelView(sec) {
     return { title: sec.n + ' · level', body: [h('p', { class: 'muted' }, 'Which level do you want to practise?'),
-      h('div', { class: 'list' }, LEVELS.map((l) => h('button', { class: 'tile', onclick: () => go(() => topicView(sec, l)) }, h('span', { class: 'em' }, l), h('div', null, h('b', null, LEVEL_NAME[l])))))] };
+      h('div', { class: 'list' }, LEVELS.map((l) => h('button', { class: 'tile', onclick: () => { if (sec.noTopic) { S.lastLevel = l; save(); go(() => modeView(sec, l, null)); } else go(() => topicView(sec, l)); } }, h('span', { class: 'em' }, l), h('div', null, h('b', null, LEVEL_NAME[l])))))] };
   }
   function topicView(sec, level) {
     const pick = (t) => { S.lastTopic = t; S.lastLevel = level; save(); go(() => modeView(sec, level, t)); };
@@ -184,8 +185,8 @@
         h('button', { class: 'tile', onclick: () => pick(TOPICS[Math.floor(Math.random() * TOPICS.length)].id) }, h('span', { class: 'em' }, '🎲'), h('b', null, 'Free topic'), h('span', null, 'Pick one at random')))] };
   }
   function modeView(sec, level, topic) {
-    const tn = TOPICS.find((t) => t.id === topic);
-    return { title: sec.n + ' · ' + level + ' · ' + tn.n, body: [h('p', { class: 'muted' }, tn.e + ' ' + tn.n + ' — choose an exercise.'),
+    const tn = TOPICS.find((t) => t.id === topic) || { n: '', e: '' };
+    return { title: sec.n + ' · ' + level + (tn.n ? ' · ' + tn.n : ''), body: [h('p', { class: 'muted' }, (tn.n ? tn.e + ' ' + tn.n + ' — c' : 'C') + 'hoose an exercise.'),
       h('div', { class: 'list' }, sec.modes.map((m) => {
         let name = m[1], sub = m[3];
         if (sec.id === 'writing' && m[0] === 'task') { const ty = D.writing[topic][level].task[0]; name = D.help[ty].title; sub = 'Second task'; }
@@ -240,7 +241,8 @@
   /* ---------- boot ---------- */
   V.boot = async function () {
     document.documentElement.setAttribute('data-theme', S.theme);
-    try { D.listening = await (await fetch('data/listening.json')).json(); } catch (e) { D.listening = []; }
+    D.listening = [];
+    for (const f of ['data/listening.json', 'data/listening2.json']) { try { D.listening = D.listening.concat(await (await fetch(f)).json()); } catch (e) { /* skip */ } }
     window.FB.loadWords();
     history.replaceState({ n: 1 }, '');
     stack.push(homeView); render();

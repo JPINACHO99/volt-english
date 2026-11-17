@@ -66,7 +66,9 @@ def build_dialogue(engine, item, idx, dest):
 
 
 def make_audio():
-    items = json.load(open(os.path.join(ROOT, "data", "listening.json"), encoding="utf-8"))
+    items = []
+    for name in sorted(f for f in os.listdir(os.path.join(ROOT, "data")) if f.startswith("listening") and f.endswith(".json")):
+        items += json.load(open(os.path.join(ROOT, "data", name), encoding="utf-8"))
     man_path = os.path.join(AUDIO, "manifest.json")
     manifest = json.load(open(man_path)) if os.path.exists(man_path) else {}
     engine = os.environ.get("TTS_ENGINE", "edge")
@@ -75,6 +77,7 @@ def make_audio():
         dest = os.path.join(AUDIO, it["id"] + ".mp3")
         if manifest.get(it["id"]) == h and os.path.exists(dest):
             continue
+        idx = idx + (idx // 24) * 3  # later batches get different voice pairs for the same topic
         try:
             build_dialogue(engine, it, idx, dest)
         except Exception as e:  # edge-tts blocked or failed: fall back to local model
