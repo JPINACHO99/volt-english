@@ -32,3 +32,47 @@
   add("foot","C1",[["relegation","being moved to a lower division","They are fighting relegation."],["derby","a match between teams from the same area","The local derby is on Sunday."],["own goal","a goal scored by mistake against your own team","A late own goal decided the match."],["pundit","an expert who gives opinions on TV","The pundits criticised the coach."],["caretaker manager","a temporary manager","A caretaker manager took over."],["injury time","minutes added for stoppages","They scored in injury time."],["turnaround","a complete change from bad to good","It was a remarkable turnaround."],["scout","a person who looks for talented players","A scout was watching the match."]]);
   add("foot","C2",[["cup upset","a surprise defeat of a stronger team in a cup","It was the biggest cup upset in years."],["grind out","to win with effort but without playing well","They ground out a one-nil win."],["tiki-taka","a style based on short passing and movement","Spain made tiki-taka famous."],["clinical","scoring from almost every chance","He was clinical in front of goal."],["against the run of play","when the other team is dominating","They scored against the run of play."],["bottle it","to fail because of nerves (informal)","They bottled it in the final."],["golden generation","an unusually talented group of players","Belgium's golden generation."],["sweeper","a defender who plays behind the others","He played as a sweeper."]]);
 })();
+
+// Third gap-fill paragraph per topic and level, using the words added above.
+// {n} = position inside the third batch (0–7); the app shifts it by off3.
+(function () {
+  const P = {
+    eng: {
+      B1: "On the building site you must always wear a {6}. Yesterday a water {2} broke, and a worker came to {4} it. He used a {7} piece of {3}. Then he pressed a green {1} to start the pump again.",
+      B2: "Our factory makes a {5} that controls the {2} in a {1}. Last week a {7} unit came back: one {0} was loose. We had to {6} the settings so that the pump can carry a heavier {3}.",
+      C1: "The new coating was a real {5}: it reduces {0} so much that the bearings' {4} doubles. Before we {3} it across the plant, we must {1} the sensors. The old design had one serious {7}: cracks caused by metal {2}.",
+      C2: "The lab is {3}, yet testing hit a {6}: the new alloy had excellent {0} strength but proved {1} in the cold. No design is {5}, so we keep a {2} plan and {7} until the results are stable, rather than fixing problems on an {4} basis."
+    },
+    elec: {
+      B1: "When the lights went out, the house was completely {4}, so I looked for a {7}. To {5} money, we now have {6} panels on the roof. Be careful when you {3} the old {0}: last week I got a {2}.",
+      B2: "During the storm the {7} was cut, but the hospital's {0} started at once. The technicians decided to {4} more {2} equipment powered by {3} energy. They also warned us never to use an old {1}, because it can {5}, and never to touch a {6} wire.",
+      C1: "The workshop needs a {2} supply for its machines. Because the cable is long, the {1} must be checked, and copper is chosen as the {0}. The inspector found that the {3} was poor, so the installation is not in {6} with the rules. We will also {7} LED lighting and switch to a cheaper night {4}.",
+      C2: "On sunny days, solar {3} pushes prices below zero, while the loss of large turbines reduces the grid's {0}. When one plant began to {6}, a {2} of failures followed. Operators now run {1} schemes, reading data from every {4}, while some families simply choose to live {5}."
+    },
+    work: {
+      B1: "I work for a big {1}. Every {2} has to wear a {7}. My {0} says I am very {6}, although I don't have much {5}. Next month I have two weeks of {3}, and my first {4} after that is a big report.",
+      B2: "Every {1} for the job in our sales {4} needs a technical {6}. The role is {5}: you {7} a team of six and the {3} is tight. The {2} is for two years, a good start for anyone's {0}.",
+      C1: "During the {4}, the {2} was cut by a third. Our new manager had to {6} the team on a project with a {5}. Reaching the first {0} on time felt like a victory. My {3} told me that managers who are never {1} for results are a {7}.",
+      C2: "The board loves {1}, but the {0} is that the firm is losing money. Two products are {3}, yet the board will simply {7} whatever the director proposes. When things go wrong, he will {2}, and if he is dismissed, he will leave with a {5}. What the company needs is someone able to {6}."
+    },
+    daily: {
+      B1: "The bus was {7} and there was a lot of {3}. At home I had to {6} the {0} and do the {1}. Then the electricity {2} arrived, and my sister asked me to {4} her some money. In the evening I just wanted to {5}.",
+      B2: "Since I live {7}, I keep a strict {0}. I buy my {1} at the market and most of my furniture is {2}. It's a friendly {6}, and on Sundays I {3} with friends in the park, after a short {4}. One day I'd like to {5} an old house.",
+      C1: "The village is a {1} community where nobody is especially {3}. People are {0} and help each other with {4} problems. On Saturdays I run {2} in the morning and share the {7} with my partner. I always {5} an hour to read, and in the evening I {6}.",
+      C2: "The carpenter is a {5} man who has known the {0} of village life for forty years. Repairs caused by everyday {1} are his {2}; big commissions are {4}. His workshop is full of {3}, and somehow he manages to {6}."
+    },
+    cook: {
+      B1: "I was very {3}, so I made a big {2}. I {5} the bread, put two eggs on a {1} and ate some soup with a {0}. The soup was a little {6}. After the {4} I even had some chocolate as a {7}.",
+      B2: "For dinner I made a beef {0}. First, {1} some butter in the pan, then {4} in the wine. The tomatoes were {7}, so I had to {6} a lemon over them. The coffee afterwards was {2} and the bread had gone {5}, but every {3} was eaten.",
+      C1: "Rice is a {3} in many countries, but here bread is king, and the baker uses wild yeast to {4} the dough. For dinner we {0} the lamb slowly and finish it with a honey {1}; high heat can {6} the sugar. The {2} cheese served afterwards is an {7}, and not everyone wants something so {5} at the end of a meal.",
+      C2: "{4} the potatoes before roasting them. Whisk the dressing hard to {1} the oil and vinegar, and check that the oil hasn't gone {2}. A little parmesan adds {0}, while chilli makes the sauce {3} rather than {5}. The result is {7}: my guests always {6} every last bite."
+    },
+    foot: {
+      B1: "I {7} my local team. Before the match I put on my {2} and my {3}. On the {4}, the coach tells us to {1} the ball quickly and {0} when we can. When the referee blows the {5} at the end, we want to be the {6}.",
+      B2: "The {6} reached the {4} stage last week. Wearing the new {5}, our team started well: the {1} scored from a {2}. The match ended in a {7}, so we play again on Sunday, and our {0} hopes to {3}.",
+      C1: "After the coach was sacked, a {4} took over a team fighting {0}. In the local {1} they were losing until an {2} gave them hope, and they won in {5}. Every {3} on television called it a remarkable {6}, and a {7} from a big club was in the stand.",
+      C2: "The favourites, a {6} of passers raised on {2}, were expected to win easily. Instead they had to {1} a narrow lead after the minnows scored {4}. Their striker, usually so {3}, missed twice, and many feared they would {5}. A {0} was avoided only thanks to their veteran {7}."
+    }
+  };
+  for (const t in P) for (const l in P[t]) { const c = DATA.vocab[t][l]; c.off3 = c.w.length - 8; c.para3 = P[t][l]; }
+})();
