@@ -24,10 +24,11 @@
   /* ---------- item builders ---------- */
   function grammarItem(i) {
     const g = D.grammar[i], ref = { k: 'g', i };
-    if (g[0] === 'mc') return { type: 'choice', ref, prompt: g[3], options: g[4], answer: g[5], instr: 'Choose the correct option.' };
-    if (g[0] === 'open') return { type: 'input', ref, sentence: g[3], answers: g[4], instr: 'Write ONE word in the gap.' };
-    if (g[0] === 'wf') return { type: 'input', ref, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
-    return { type: 'input', ref, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
+    const note = g[g[0] === 'kt' ? 7 : g[0] === 'open' ? 5 : 6] || (D.gnotes || [])[i] || '';
+    if (g[0] === 'mc') return { type: 'choice', ref, note, prompt: g[3], options: g[4], answer: g[5], instr: 'Choose the correct option.' };
+    if (g[0] === 'open') return { type: 'input', ref, note, sentence: g[3], answers: g[4], instr: 'Write ONE word in the gap.' };
+    if (g[0] === 'wf') return { type: 'input', ref, note, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
+    return { type: 'input', ref, note, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
   }
   function defineItem(t, l, i) {
     const w = D.vocab[t][l].w[i];
@@ -36,10 +37,15 @@
 
   V.start = function (sec, level, topic, mode) {
     let items = [];
-    const cell = (list) => list.find((x) => x.t === topic && x.l === level);
+    const cell = (list) => { // several items can share a topic and level: pick one, avoiding the last one shown
+      const all = list.filter((x) => x.t === topic && x.l === level), fresh = all.filter((x) => x.id !== S.lastItem);
+      const pick = (fresh.length ? fresh : all)[Math.floor(Math.random() * (fresh.length ? fresh.length : all.length))];
+      if (pick) { S.lastItem = pick.id; V.save(); }
+      return pick;
+    };
     if (sec === 'grammar') {
       let idx = D.grammar.map((g, i) => i).filter((i) => D.grammar[i][1] === level && (mode === 'mix' || D.grammar[i][0] === mode));
-      idx = shuffle(idx).sort((a, b) => (D.grammar[b][2] === topic) - (D.grammar[a][2] === topic)).slice(0, mode === 'mix' ? 8 : 6);
+      idx = shuffle(idx).sort((a, b) => (D.grammar[b][2] === topic) - (D.grammar[a][2] === topic)).slice(0, 10);
       items = idx.map(grammarItem);
     } else if (sec === 'vocab') {
       const n = D.vocab[topic][level].w.length;
@@ -114,6 +120,7 @@
     return h('div', { class: 'text' }, h('h2', null, r.title), r.p.map((p, i) => h('p', null, labels ? h('b', { class: 'kw' }, 'ABC'[i] + '  ') : null, V.tappable(p))));
   }
   function checkBtn(label, fn) { const b = h('button', { class: 'btn', onclick: () => fn(b) }, label || 'Check'); return h('div', { class: 'row end', style: 'margin-top:12px' }, b); }
+  function why(note) { return note ? h('div', { class: 'fb na' }, h('span', { class: 'tag na' }, 'Why'), h('div', null, note)) : null; }
   function verdictLine(ok, text) { return h('div', { class: 'fb ' + (ok ? 'good' : 'bad') }, h('span', { class: 'tag ' + (ok ? 'good' : 'bad') }, ok ? '✓ Correct' : '✗ Not quite'), text ? h('div', null, text) : null); }
 
   /** Microphone with live transcript into an editable textarea. */
@@ -177,7 +184,7 @@
         checkBtn('Check', (b) => {
           if (sel < 0 || done) return; done = true; b.disabled = true;
           const ok = sel === it.answer; opts[it.answer].classList.add('good'); if (!ok) opts[sel].classList.add('bad');
-          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]));
+          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]), why(it.note));
           ctx.finish({ ok: ok ? 1 : 0, tot: 1, weak: ok ? [] : [it.prompt] });
         }));
     },
@@ -190,7 +197,7 @@
         const ok = it.answers.some((a) => norm(a) === norm(inp.value)); inp.classList.add(ok ? 'good' : 'bad');
         record(it.ref, ok);
         if (it.word && !ok) V.srsAdd(it.word[0], it.word[1], it.word[2]);
-        box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.answers[0]), it.word ? h('p', { class: 'muted' }, h('span', { class: 'row' }, V.sayBtn(it.word[0]), '“' + it.word[2] + '”')) : null);
+        box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.answers[0]), why(it.note), it.word ? h('p', { class: 'muted' }, h('span', { class: 'row' }, V.sayBtn(it.word[0]), '“' + it.word[2] + '”')) : null);
         ctx.finish({ ok: ok ? 1 : 0, tot: 1, weak: ok ? [] : [it.word ? it.word[0] + ' — ' + it.word[1] : it.sentence.replace('___', '[' + it.answers[0] + ']')] });
       };
       const btn = checkBtn('Check', go);
