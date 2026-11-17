@@ -76,6 +76,17 @@
   V.addMyWord = function (w, def, ex) {
     if (!S.my.some((x) => x.w === w)) { S.my.unshift({ w, def: def || '', ex: ex || '' }); V.srsAdd(w, def || '', ex || ''); save(); }
   };
+  /* "Save to My words" toggle: ☆ Save / ★ Saved (tap again to remove) */
+  V.saveBtn = function (w, def, ex) {
+    const on = () => S.my.some((x) => x.w === w);
+    const b = h('button', { class: 'savew', title: 'Save to My words', onclick: (e) => {
+      e.stopPropagation();
+      if (on()) { S.my = V.S.my = S.my.filter((x) => x.w !== w); save(); } else V.addMyWord(w, def, ex);
+      paint();
+    } });
+    const paint = () => { const s = on(); b.textContent = s ? '★ Saved' : '☆ Save'; b.classList.toggle('on', s); };
+    paint(); return b;
+  };
 
   /* ---------- speech output, word lookup ---------- */
   const say = (V.say = function (text) {

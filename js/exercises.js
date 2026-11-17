@@ -63,14 +63,15 @@
   function phrasalItem(i, m) {
     const p = D.phrasal[i], ref = { k: 'p', i, m }, same = D.phrasal.map((x, j) => j).filter((j) => j !== i && D.phrasal[j][1] === p[1] && D.phrasal[j][0] !== p[0]);
     const others = shuffle(same).slice(0, 3), note = p[0] + ' = ' + p[2] + '. Example: ' + pvPlain(p[3]);
+    const word = [p[0], p[2], pvPlain(p[3])];
     const pvNote = (j) => (j === i ? '' : m === 'm' ? 'That is the meaning of “' + D.phrasal[j][0] + '”, as in: ' + pvPlain(D.phrasal[j][3]) : '“' + D.phrasal[j][0] + '” means ' + D.phrasal[j][2] + ', as in: ' + pvPlain(D.phrasal[j][3]));
-    if (m === 'm') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, optNotes: o.map(pvNote), say: p[0], prompt: pvPlain(p[3]), sub: 'What does “' + p[0] + '” mean here?', options: o.map((j) => D.phrasal[j][2]), answer: o.indexOf(i), instr: 'Choose the meaning of the phrasal verb.' }; }
-    if (m === 'c') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, optNotes: o.map(pvNote), prompt: 'Which phrasal verb means: “' + p[2] + '”?', options: o.map((j) => D.phrasal[j][0]), answer: o.indexOf(i), instr: 'Choose the phrasal verb.' }; }
+    if (m === 'm') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, word, optNotes: o.map(pvNote), say: p[0], prompt: pvPlain(p[3]), sub: 'What does “' + p[0] + '” mean here?', options: o.map((j) => D.phrasal[j][2]), answer: o.indexOf(i), instr: 'Choose the meaning of the phrasal verb.' }; }
+    if (m === 'c') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, word, optNotes: o.map(pvNote), prompt: 'Which phrasal verb means: “' + p[2] + '”?', options: o.map((j) => D.phrasal[j][0]), answer: o.indexOf(i), instr: 'Choose the phrasal verb.' }; }
     const parts = p[3].match(/\[[^\]]+\]/g), particle = p[0].split(' ').slice(1).join(' ');
     let sentence;
     if (parts.length > 1) sentence = p[3].replace(parts[parts.length - 1], '___').replace(/[\[\]]/g, '');
     else { const words = parts[0].slice(1, -1).split(' '); sentence = p[3].replace(parts[0], words[0] + ' ___'); }
-    return { type: 'input', ref, note, hint: p[2], sentence, answers: [particle], instr: 'Complete the phrasal verb with the missing particle(s).' };
+    return { type: 'input', ref, note, word, hint: p[2], sentence, answers: [particle], instr: 'Complete the phrasal verb with the missing particle(s).' };
   }
   function phrasalList(level, job) {
     const all = D.phrasal.filter((p) => p[1] === level && (!job || p[4] === 'job')).sort((a, b) => a[0].localeCompare(b[0])), box = h('div');
@@ -297,7 +298,7 @@
           [L[selL], b].forEach((x) => { x.classList.remove('sel'); x.classList.add('good'); x.disabled = true; });
           if (it.refs) record(it.refs[selL], !missed.has(selL));
           selL = -1; done++;
-          if (done === n) { const ok = n - missed.size; box.append(verdictLine(ok === n, ok + ' of ' + n + ' matched at the first try.')); ctx.finish({ ok, tot: n, weak: [...missed].map((k) => it.left[k] + ' — ' + it.right[k]) }); }
+          if (done === n) { const ok = n - missed.size; box.append(verdictLine(ok === n, ok + ' of ' + n + ' matched at the first try.'), it.refs ? [h('h3', null, 'Words in this exercise'), it.refs.map((r) => { const w = D.vocab[r.t][r.l].w[r.i]; return h('div', { class: 'row small wordrow' }, V.sayBtn(w[0]), h('span', { class: 'grow' }, h('b', null, w[0]), ': ' + w[1]), V.saveBtn(w[0], w[1], w[2])); })] : null); ctx.finish({ ok, tot: n, weak: [...missed].map((k) => it.left[k] + ' — ' + it.right[k]) }); }
         } else { missed.add(selL); b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 600); }
       } }, it.right[ri]));
       box.append(instr(it.instr), h('div', { class: 'pairs' }, h('div', { class: 'opts' }, L), h('div', { class: 'opts' }, Rb)));
@@ -334,7 +335,7 @@
         checkBtn('Check', (b) => {
           if (sel < 0 || done) return; done = true; b.disabled = true;
           const ok = sel === it.answer; opts[it.answer].classList.add('good'); if (!ok) opts[sel].classList.add('bad');
-          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]), ok ? null : yourAnswer(it.options[sel], (it.optNotes || [])[sel]), why(it.note));
+          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]), ok ? null : yourAnswer(it.options[sel], (it.optNotes || [])[sel]), why(it.note), it.word ? h('div', { class: 'row end' }, V.saveBtn(it.word[0], it.word[1], it.word[2])) : null);
           ctx.finish({ ok: ok ? 1 : 0, tot: 1, weak: ok ? [] : [it.prompt] });
         }));
     },
@@ -347,7 +348,7 @@
         const ok = it.answers.some((a) => norm(a) === norm(inp.value)); inp.classList.add(ok ? 'good' : 'bad');
         record(it.ref, ok);
         if (it.word && !ok) V.srsAdd(it.word[0], it.word[1], it.word[2]);
-        box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.answers[0]), why(it.note), it.word ? h('p', { class: 'muted' }, h('span', { class: 'row' }, V.sayBtn(it.word[0]), '“' + it.word[2] + '”')) : null);
+        box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.answers[0]), why(it.note), it.word ? h('div', { class: 'row wordrow' }, V.sayBtn(it.word[0]), h('div', { class: 'grow' }, h('b', null, it.word[0]), ': ' + it.word[1], it.word[2] ? h('div', { class: 'muted small' }, '“' + it.word[2] + '”') : null), V.saveBtn(it.word[0], it.word[1], it.word[2])) : null);
         ctx.finish({ ok: ok ? 1 : 0, tot: 1, weak: ok ? [] : [it.word ? it.word[0] + ' — ' + it.word[1] : it.sentence.replace('___', '[' + it.answers[0] + ']')] });
       };
       const btn = checkBtn('Check', go);
@@ -370,7 +371,7 @@
             record({ k: 'v', t: it.t, l: it.l, i: inp._n }, good);
             if (good) ok++; else { weak.push(w[0] + ' — ' + w[1]); V.srsAdd(w[0], w[1], w[2]); inp.value = (inp.value ? inp.value + ' → ' : '→ ') + w[0]; inp.style.minWidth = '170px'; }
           });
-          box.append(h('h3', null, 'Words in this paragraph'), used.map((n) => h('div', { class: 'row small' }, V.sayBtn(cell.w[n][0]), h('span', { class: 'grow' }, h('b', null, cell.w[n][0]), ': ' + cell.w[n][1]))));
+          box.append(h('h3', null, 'Words in this paragraph'), used.map((n) => h('div', { class: 'row small wordrow' }, V.sayBtn(cell.w[n][0]), h('span', { class: 'grow' }, h('b', null, cell.w[n][0]), ': ' + cell.w[n][1]), V.saveBtn(cell.w[n][0], cell.w[n][1], cell.w[n][2]))));
           ctx.finish({ ok, tot: inputs.length, weak });
         }));
     },
@@ -497,7 +498,7 @@
     },
     card(it, box, ctx) {
       const c = S.srs[it.w] || V.vocabIndex.get(it.w) || { def: '', ex: '' };
-      const back = h('div', { hidden: true }, h('div', { class: 'row', style: 'justify-content:center' }, h('span', { class: 'big' }, it.w), V.sayBtn(it.w)), c.ex ? h('p', { class: 'muted' }, '“' + c.ex + '”') : null,
+      const back = h('div', { hidden: true }, h('div', { class: 'row', style: 'justify-content:center' }, h('span', { class: 'big' }, it.w), V.sayBtn(it.w), V.saveBtn(it.w, c.def || '', c.ex || '')), c.ex ? h('p', { class: 'muted' }, '“' + c.ex + '”') : null,
         h('div', { class: 'row', style: 'justify-content:center' }, h('button', { class: 'btn sec', onclick: () => answer(false) }, "✗ I didn't know it"), h('button', { class: 'btn', onclick: () => answer(true) }, '✓ I knew it')));
       const show = h('button', { class: 'btn', onclick: () => { show.hidden = true; back.hidden = false; } }, 'Show the word');
       let done = false;

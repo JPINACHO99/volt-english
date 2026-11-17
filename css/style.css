@@ -77,3 +77,6 @@ del{color:var(--bad)}ins{color:var(--good);text-decoration:none;font-weight:600}
 .confetti{position:fixed;left:50%;top:38%;width:9px;height:14px;border-radius:2px;pointer-events:none;z-index:50;animation:confetti 1.3s ease-out forwards}
 @media (prefers-reduced-motion:reduce){.opt.good,.opt.bad,.gap.good,.gap.bad,input.good,input.bad,select.good,select.bad,.fb,.big-emoji,.confetti{animation:none}.ring .fgc{transition:none}}
 .scene.art{padding:0;overflow:hidden;line-height:0;background:#fff}.scene.art svg{display:block;width:100%;height:auto}
+.savew{border:1px solid var(--line);background:var(--card2);color:var(--txt);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600;white-space:nowrap;flex:none}
+.savew.on{border-color:var(--acc);color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--card2))}
+.wordrow{gap:8px;align-items:center;margin:6px 0}
