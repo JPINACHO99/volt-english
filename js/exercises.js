@@ -76,9 +76,9 @@
       items = idx.map(grammarItem);
     } else if (sec === 'vocab') {
       const n = D.vocab[topic][level].w.length;
-      if (mode === 'define') items = shuffle([...Array(n).keys()]).map((i) => defineItem(topic, level, i));
+      if (mode === 'define') items = shuffle([...Array(n).keys()]).slice(0, 8).map((i) => defineItem(topic, level, i));
       else if (mode === 'cards') return V.startCards(D.vocab[topic][level].w.map((w) => { V.srsAdd(w[0], w[1], w[2]); return w[0]; }));
-      else items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank' }];
+      else { const c2 = D.vocab[topic][level]; S.paraFlip = !S.paraFlip; items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank', second: !!(c2.para2 && S.paraFlip) }]; }
     } else if (sec === 'reading') items = [{ type: mode === 'mc' ? 'readmc' : mode === 'gapped' ? 'gaptext' : 'match', r: cell(D.reading) }];
     else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : 'listengaps', a: cell(D.listening) }];
     else if (sec === 'speaking') {
@@ -237,8 +237,8 @@
     gappara(it, box, ctx) {
       const cell = D.vocab[it.t][it.l], inputs = [], used = [];
       const para = h('p', { class: 'text' });
-      cell.para.split(/\{(\d)\}/).forEach((p, i) => {
-        if (i % 2) { const n = Number(p), inp = h('input', { class: 'gap', type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' }); inp._n = n; inputs.push(inp); used.push(n); para.append(inp); } else para.append(p);
+      (it.second ? cell.para2 : cell.para).split(/\{(\d)\}/).forEach((p, i) => {
+        if (i % 2) { const n = Number(p) + (it.second ? cell.off2 : 0), inp = h('input', { class: 'gap', type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' }); inp._n = n; inputs.push(inp); used.push(n); para.append(inp); } else para.append(p);
       });
       box.append(instr('Complete the paragraph with the missing words' + (it.bank ? ' from the list.' : '. No list this time!')), it.bank ? h('div', { class: 'bank' }, shuffle(used).map((n) => h('span', null, cell.w[n][0]))) : null, para,
         checkBtn('Check', (b) => {
