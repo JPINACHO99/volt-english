@@ -246,7 +246,7 @@
   V.boot = async function () {
     document.documentElement.setAttribute('data-theme', S.theme);
     D.listening = [];
-    for (const f of ['data/listening.json', 'data/listening2.json', 'data/listening3.json', 'data/listening4.json']) { try { D.listening = D.listening.concat(await (await fetch(f)).json()); } catch (e) { /* skip */ } }
+    for (const f of ['data/listening.json', 'data/listening2.json', 'data/listening3.json', 'data/listening4.json', 'data/listening5.json']) { try { D.listening = D.listening.concat(await (await fetch(f)).json()); } catch (e) { /* skip */ } }
     window.FB.loadWords();
     history.replaceState({ n: 1 }, '');
     stack.push(homeView); render();
