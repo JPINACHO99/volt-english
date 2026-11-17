@@ -194,11 +194,15 @@
       }))] };
   }
   function myWordsView() {
-    return { title: 'My words', body: S.my.length ? [h('p', { class: 'muted' }, 'Saved words also appear in your flashcards.'),
+    const w = h('input', { type: 'text', placeholder: 'Word or phrase (e.g. leeway)', autocapitalize: 'off' }), m = h('input', { type: 'text', placeholder: 'Meaning or note, in any language (optional)' });
+    const addOwn = () => { const word = w.value.trim(), def = m.value.trim(); if (!word) { w.focus(); return; } const old = S.my.find((x) => x.w.toLowerCase() === word.toLowerCase()); if (old) { if (def) { old.def = def; if (S.srs[old.w]) S.srs[old.w].def = def; save(); } } else V.addMyWord(word, def, ''); render(); };
+    [w, m].forEach((i) => i.addEventListener('keydown', (e) => { if (e.key === 'Enter') addOwn(); }));
+    const form = h('div', { class: 'card' }, h('h3', { style: 'margin-top:0' }, 'Add your own word'), w, h('div', { style: 'height:8px' }), m, h('div', { class: 'row end', style: 'margin-top:10px' }, h('button', { class: 'btn', onclick: addOwn }, '＋ Add')));
+    return { title: 'My words', body: S.my.length ? [form, h('p', { class: 'muted' }, 'Saved words also appear in your flashcards.'),
       S.my.map((x) => h('div', { class: 'card' }, h('div', { class: 'row' }, h('b', { class: 'grow' }, x.w), V.sayBtn(x.w),
         h('button', { class: 'ic', 'aria-label': 'Delete', onclick: () => { S.my = S.my.filter((y) => y !== x); delete S.srs[x.w]; save(); render(); } }, '🗑️')),
       x.def ? h('p', null, x.def) : null, x.ex ? h('p', { class: 'muted small' }, '“' + x.ex + '”') : null))]
-      : [h('p', { class: 'muted center' }, 'No words yet. Tap any word in a text, or the ＋ on the word of the day, to save it here.')] };
+      : [form, h('p', { class: 'muted center' }, 'No words yet. Add one above, tap any word in a text, or use the ＋ on the word of the day.')] };
   }
   function historyView() {
     const open = (x) => sheet([h('span', { class: 'pill' }, x.sec + ' · ' + x.level), h('p', { class: 'muted small' }, new Date(x.d).toLocaleString()), h('h3', null, 'Task'), h('p', null, x.prompt),
