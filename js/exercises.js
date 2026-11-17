@@ -91,6 +91,7 @@
       else if (mode === 'cards') return V.startCards(D.vocab[topic][level].w.map((w) => { V.srsAdd(w[0], w[1], w[2]); return w[0]; }));
       else { const c2 = D.vocab[topic][level], n2 = c2.para3 ? 3 : c2.para2 ? 2 : 1; S.paraTurn = ((S.paraTurn || 0) + 1) % 3; items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank', which: S.paraTurn % n2 }]; }
     } else if (sec === 'reading') items = [{ type: mode === 'mc' ? 'readmc' : mode === 'gapped' ? 'gaptext' : 'match', r: cell(D.reading) }];
+    else if (sec === 'watch') { const vs = (D.videos || []).filter((v) => v.l === level); S.vidTurn = S.vidTurn || {}; S.vidTurn[level] = ((S.vidTurn[level] || 0) + 1) % Math.max(1, vs.length); V.save(); items = vs.length ? [{ type: 'watch', a: vs[S.vidTurn[level]] }] : []; }
     else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : mode === 'who' ? 'listenwho' : 'listengaps', a: cell(D.listening) }];
     else if (sec === 'speaking') {
       const sc = D.scenes[topic];
@@ -182,8 +183,15 @@
     V.cleanup.push(() => au.pause());
     return h('div', null, h('div', { class: 'row' }, h('b', { class: 'grow' }, '🎧 ' + a.title), sp), au);
   }
+  function videoBlock(a) {
+    const v = h('video', { controls: true, playsinline: true, preload: 'metadata', src: a.video, poster: a.video.replace('.mp4', '.jpg'), crossorigin: 'anonymous', style: 'width:100%;max-height:70vh;border-radius:14px;background:#000' }, h('track', { kind: 'subtitles', srclang: 'en', label: 'English', src: a.vtt, default: true }));
+    V.cleanup.push(() => v.pause());
+    const words = h('details', { class: 'card', style: 'margin-top:10px' }, h('summary', null, 'Key words (' + a.words.length + ')'),
+      a.words.map((w) => h('div', { class: 'row', style: 'margin:6px 0' }, h('div', { class: 'grow' }, h('b', null, w[0]), ' — ', w[1], h('div', { class: 'muted small' }, '“' + w[2] + '”')), V.sayBtn(w[0]), h('button', { class: 'ic', title: 'Add to My words', onclick: (e) => { V.addMyWord(w[0], w[1], w[2]); e.target.textContent = '✓'; } }, '＋'))));
+    return h('div', null, h('b', null, a.e + ' ' + a.title), v, words);
+  }
   function transcript(a) {
-    return h('details', { class: 'card', open: true }, h('summary', null, 'Transcript (tap any word for its meaning)'), h('div', { class: 'text' }, a.lines.map((l) => h('p', null, h('b', null, l[0] + ': '), V.tappable(l[1])))));
+    return h('details', { class: 'card', open: true }, h('summary', null, 'Transcript (tap any word for its meaning)'), h('div', { class: 'text' }, a.lines.map((l) => h('p', null, l[0] ? h('b', null, l[0] + ': ') : null, V.tappable(l[1])))));
   }
   function readingText(r, labels) {
     return h('div', { class: 'text' }, h('h2', null, r.title), r.p.map((p, i) => h('p', null, labels ? h('b', { class: 'kw' }, 'ABC'[i] + '  ') : null, V.tappable(p))));
@@ -394,9 +402,10 @@
         box.append(transcript(a)); ctx.finish({ ok, tot: inputs.length, weak });
       }));
     },
+    watch(it, box, ctx) { return RENDER.listenopen(it, box, ctx); },
     listenopen(it, box, ctx) {
       const a = it.a, tas = [];
-      box.append(instr('Listen to the dialogue and answer in your own words. There are no options: explain what you understood.'), audioBlock(a));
+      box.append(a.video ? [instr('Watch the video and answer in your own words. Subtitles can be turned on or off with the CC button.'), videoBlock(a)] : [instr('Listen to the dialogue and answer in your own words. There are no options: explain what you understood.'), audioBlock(a)]);
       a.q.forEach((q, qi) => { const ta = h('textarea', { style: 'min-height:70px', placeholder: 'Your answer…' }); tas.push(ta); box.append(h('p', null, h('b', null, qi + 1 + '. ' + q.q)), ta); });
       box.append(checkBtn('Check my answers', async (b) => {
         if (tas.every((t) => !t.value.trim())) return; b.disabled = true; tas.forEach((t) => (t.disabled = true));

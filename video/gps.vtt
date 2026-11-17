@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.838
+Open a map on your phone, and in seconds it knows where you are, almost to the metre.
+
+2
+00:00:06.158 --> 00:00:07.485
+How does it do that?
+
+3
+00:00:08.035 --> 00:00:13.779
+About thirty GPS satellites orbit the Earth, around twenty thousand kilometres above us.
+
+4
+00:00:14.099 --> 00:00:17.848
+Each one carries an extremely precise atomic clock.
+
+5
+00:00:18.398 --> 00:00:26.191
+Every satellite constantly broadcasts a signal saying which satellite it is, and exactly what time the signal was sent.
+
+6
+00:00:26.741 --> 00:00:31.172
+Your phone receives that signal a tiny fraction of a second later.
+
+7
+00:00:31.492 --> 00:00:37.791
+Since the signal travels at the speed of light, the delay tells your phone how far away the satellite is.
+
+8
+00:00:38.341 --> 00:00:44.985
+One distance isn't enough, but with three satellites there's only one point where all the distances match.
+
+9
+00:00:45.305 --> 00:00:50.659
+A fourth satellite corrects the error of your phone's clock, which is far less accurate.
+
+10
+00:00:51.209 --> 00:00:54.158
+The timing has to be incredibly precise.
+
+11
+00:00:54.478 --> 00:01:00.303
+An error of just one millionth of a second means a mistake of about three hundred metres.
+
+12
+00:01:00.853 --> 00:01:09.262
+There's even a twist from Einstein: the clocks on the satellites run faster than ours, by about thirty-eight microseconds a day.
+
+13
+00:01:09.582 --> 00:01:17.930
+Engineers adjust them. Without that correction, GPS positions would drift by around ten kilometres every day.
+
+14
+00:01:18.480 --> 00:01:24.554
+So every time you follow a map, you're using atomic clocks, space, and Einstein's relativity.
