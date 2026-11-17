@@ -3,7 +3,7 @@ DATA.grammar.push(
 // ---- multiple choice ----
 ["mc","C2","eng","The prototype failed, ___ the team back by six months.",["putting","setting","holding","keeping"],1,"'Set someone back' = delay their progress."],
 ["mc","C2","eng","Were it not ___ the sensors, the leak would have gone undetected.",["by","with","for","from"],2,"'Were it not for' = if it were not for."],
-["mc","C2","elec","The minister was at ___ to explain the outage.",["pains","a loss","odds","large"],1,"'At a loss to' = unable to. ('At pains to' = making a great effort to.)"],
+["mc","C2","elec","The minister was at ___ to explain the outage.",["an end","a loss","odds","large"],1,"'Be at a loss to do something' = be unable to do it."],
 ["mc","C2","elec","Not for nothing ___ described as the backbone of the economy.",["the grid is","is the grid","the grid has","has the grid"],1,"Inversion after the negative phrase 'Not for nothing'."],
 ["mc","C2","work","She has a real ___ for spotting talent.",["knack","trick","hand","skill of"],0,"'Have a knack for' = have a natural ability."],
 ["mc","C2","work","The board gave the plan the green ___.",["sign","signal","light","flag"],2,"'Give the green light' = approve."],
