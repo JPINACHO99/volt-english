@@ -20,6 +20,7 @@
     if (ref.k === 'r') { const r = D.reading.find((x) => x.id === ref.id), q = r.mc[ref.q]; const x = ((D.rexp || {})[r.id] || [])[ref.q] || {}; return { type: 'choice', ref, context: r, prompt: q.q, options: q.o, answer: q.a, note: x.e, optNotes: x.w, instr: 'Read the text again if you need to, then answer.' }; }
     if (ref.k === 'p') return phrasalItem(ref.i, ref.m);
     if (ref.k === 'q') return quizItem(ref.i);
+    if (ref.k === 'm') return exprItem(ref.i, ref.j);
     if (ref.k === 'l') { const a = D.listening.find((x) => x.id === ref.id), g = a.gaps[ref.i]; return { type: 'input', ref, audio: a, sentence: g.s, answers: [g.a], instr: 'Listen and write the exact word you hear.' }; }
   }
 
@@ -36,6 +37,22 @@
   function quizItem(i, cat) {
     const q = D.quiz[i], order = shuffle([0, 1, 2, 3]);
     return { type: 'choice', ref: { k: 'q', i }, prompt: q[2], sub: cat ? CAT[q[1]] : null, options: order.map((j) => q[3][j]), answer: order.indexOf(0), note: q[4], instr: 'Choose the correct answer.' };
+  }
+  function songQ(i, n) {
+    const sg = D.music[i], q = sg.q[n], order = shuffle([0, 1, 2, 3]);
+    return { type: 'choice', prompt: q.q, sub: '🎵 ' + sg.title + ' — ' + sg.artist, options: order.map((j) => q.o[j]), answer: order.indexOf(0), note: q.e, instr: 'Answer about the song.' };
+  }
+  function exprItem(i, j) {
+    const sg = D.music[i], e = sg.ex[j];
+    const pool = shuffle(D.music.filter((x) => x.l === sg.l).flatMap((x) => x.ex).filter((x) => x[0] !== e[0])).slice(0, 3);
+    const opts = shuffle([e].concat(pool));
+    return { type: 'choice', ref: { k: 'm', i, j }, say: e[0], prompt: 'What does “' + e[0] + '” mean?', sub: 'From the song “' + sg.title + '”', options: opts.map((x) => x[1]), answer: opts.indexOf(e), optNotes: opts.map((x) => (x === e ? '' : 'That is the meaning of “' + x[0] + '”.')), note: e[0] + ' = ' + e[1] + '. Example: ' + e[2], word: [e[0], e[1], e[2]], instr: 'Choose the meaning.' };
+  }
+  function songList(level) {
+    const all = D.music.filter((x) => x.l === level);
+    V.go(() => ({ title: 'Music · ' + level, body: [h('p', { class: 'muted' }, all.length + ' songs at this level. The links open a YouTube search for the official video.'), all.map((sg) => h('div', { class: 'card', style: 'margin:8px 0;padding:12px' },
+      h('div', { class: 'row' }, h('div', { class: 'grow' }, h('b', null, sg.title), h('div', { class: 'muted small' }, sg.artist + ' · ' + sg.year)), h('a', { class: 'btn sec', href: sg.url, target: '_blank', rel: 'noopener' }, '▶ YouTube')),
+      h('p', { class: 'small' }, sg.about)))] }));
   }
   function judgeItem(i) {
     const g = D.grammar[i], wrong = [0, 1, 2, 3].filter((k) => k !== g[5]), use = Math.random() < 0.5 ? g[5] : wrong[Math.floor(Math.random() * 3)];
@@ -97,6 +114,13 @@
       else if (mode === 'cards') return V.startCards(D.vocab[topic][level].w.map((w) => { V.srsAdd(w[0], w[1], w[2]); return w[0]; }));
       else { const c2 = D.vocab[topic][level], n2 = c2.para3 ? 3 : c2.para2 ? 2 : 1; S.paraTurn = ((S.paraTurn || 0) + 1) % 3; items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank', which: S.paraTurn % n2 }]; }
     } else if (sec === 'reading') items = [{ type: mode === 'mc' ? 'readmc' : mode === 'gapped' ? 'gaptext' : 'match', r: cell(D.reading) }];
+    else if (sec === 'music') {
+      const idx = D.music.map((x, i) => i).filter((i) => D.music[i].l === level);
+      if (mode === 'slist') return songList(level);
+      if (mode === 'mexpr') items = shuffle(idx.flatMap((i) => [0, 1, 2, 3].map((j) => [i, j]))).slice(0, 10).map((p) => exprItem(p[0], p[1]));
+      else { S.songTurn = S.songTurn || {}; S.songTurn[level] = ((S.songTurn[level] || 0) + 1) % idx.length; V.save(); const i = idx[S.songTurn[level]];
+        items = [{ type: 'song', s: D.music[i] }].concat([0, 1, 2].map((n) => songQ(i, n)), shuffle([0, 1, 2, 3]).map((j) => exprItem(i, j))); }
+    }
     else if (sec === 'culture') items = shuffle(D.quiz.map((q, i) => i).filter((i) => D.quiz[i][0] === level && (mode === 'mix' || D.quiz[i][1] === mode))).slice(0, mode === 'mix' ? 10 : 8).map((i) => quizItem(i, mode === 'mix'));
     else if (sec === 'watch') { const vs = (D.videos || []).filter((v) => v.l === level); S.vidTurn = S.vidTurn || {}; S.vidTurn[level] = ((S.vidTurn[level] || 0) + 1) % Math.max(1, vs.length); V.save(); items = vs.length ? [{ type: 'watch', a: vs[S.vidTurn[level]] }] : []; }
     else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : mode === 'who' ? 'listenwho' : 'listengaps', a: cell(D.listening) }];
@@ -410,6 +434,14 @@
       }));
     },
     watch(it, box, ctx) { return RENDER.listenopen(it, box, ctx); },
+    song(it, box, ctx) {
+      const sg = it.s;
+      box.append(instr('Listen to the song (the button opens YouTube), read about it, and then answer the questions.'),
+        h('div', { class: 'row' }, h('div', { class: 'grow' }, h('h2', { style: 'margin:0' }, '🎵 ' + sg.title), h('div', { class: 'muted' }, sg.artist + ' · ' + sg.year)), h('a', { class: 'btn', href: sg.url, target: '_blank', rel: 'noopener' }, '▶ Listen')),
+        h('details', { class: 'card', open: true, style: 'margin-top:10px' }, h('summary', null, 'About the song (tap any word for its meaning)'), h('p', { class: 'text' }, V.tappable(sg.about))),
+        h('p', { class: 'muted small' }, 'Lyrics are not included for copyright reasons; you can find them on licensed sites or turn on captions on YouTube.'));
+      ctx.finish();
+    },
     listenopen(it, box, ctx) {
       const a = it.a, tas = [];
       box.append(a.video ? [instr('Watch the video and answer in your own words. Subtitles can be turned on or off with the CC button.'), videoBlock(a)] : [instr('Listen to the dialogue and answer in your own words. There are no options: explain what you understood.'), audioBlock(a)]);
