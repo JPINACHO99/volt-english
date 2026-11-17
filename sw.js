@@ -1,7 +1,7 @@
 /* Volt English service worker: app files are network-first (so updates arrive on refresh, offline falls back to cache); audio and icons are cache-first. */
-const CACHE = 'volt-v4';
+const CACHE = 'volt-v5';
 const SHELL = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/exercises.js', 'js/feedback.js', 'data/reading.js', 'data/vocab.js', 'data/grammar.js', 'data/grammar_notes.js', 'data/grammar2.js', 'data/grammar3.js',
-  'data/speaking.js', 'data/writing.js', 'data/phrasal.js', 'data/listening.json', 'data/listening2.json', 'data/words.txt', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+  'data/speaking.js', 'data/writing.js', 'data/phrasal.js', 'data/phrasal2.js', 'data/listening.json', 'data/listening2.json', 'data/words.txt', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
