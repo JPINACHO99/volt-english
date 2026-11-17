@@ -1,0 +1,368 @@
+[
+{"id":"eng_B1_2","t":"eng","l":"B1","title":"Safety on the first day","lines":[
+["B","Welcome to the workshop, Ben. Before you start, I need to explain the safety rules."],
+["A","Of course. What do I need to wear?"],
+["B","You must always wear safety glasses and special shoes. You can get them in the store room."],
+["A","And gloves?"],
+["B","Only when you move heavy boxes. Never wear gloves near the drilling machine."],
+["A","OK. What do I do if there is an accident?"],
+["B","Press the red button on the wall. It stops all the machines. Then call me."],
+["A","Thank you. I will be careful."]],
+"q":[
+{"q":"What must Ben always wear in the workshop?","a":"Safety glasses and special shoes, which he can get in the store room.","k":[["glasses"],["shoes"]]},
+{"q":"What is the rule about gloves?","a":"He should wear them only when moving heavy boxes, and never near the drilling machine.","k":[["boxes","heavy"],["never","drilling","machine"]]},
+{"q":"What should he do if there is an accident?","a":"Press the red button on the wall, which stops all the machines, and then call her.","k":[["red button","button"],["call"]]}],
+"gaps":[{"s":"You must always wear safety ___ and special shoes.","a":"glasses"},{"s":"Never wear gloves near the ___ machine.","a":"drilling"},{"s":"Press the red ___ on the wall.","a":"button"}]},
+
+{"id":"eng_B2_2","t":"eng","l":"B2","title":"The quality problem","lines":[
+["A","Have you seen the figures for last week? Almost eight percent of the parts were rejected."],
+["B","Eight percent? That's double the usual rate. Do we know why?"],
+["A","Most of the faulty parts came from the night shift, and nearly all of them were slightly too long."],
+["B","So it could be the machine settings rather than the material."],
+["A","That's my guess. A new operator started two weeks ago, and I don't think anyone showed him how to calibrate the cutter properly."],
+["B","Then it's a training issue. Can you spend a night with him this week?"],
+["A","I'll do it on Wednesday. I'll also put a checklist next to the machine, so that it's checked at the start of every shift."],
+["B","Good. Let's look at the numbers again in a fortnight."]],
+"q":[
+{"q":"What is the problem and how serious is it?","a":"Almost eight percent of the parts were rejected last week, which is double the usual rate.","k":[["eight","8"],["double","rejected","twice"]]},
+{"q":"What do they think the cause is?","a":"A new operator on the night shift was never shown how to calibrate the cutter, so the parts come out slightly too long.","k":[["operator","night shift","new"],["calibrate","settings","training","long"]]},
+{"q":"What two actions will the man take?","a":"He will spend Wednesday night with the operator to train him, and put a checklist next to the machine for the start of every shift.","k":[["wednesday","train","night"],["checklist"]]}],
+"gaps":[{"s":"Almost eight percent of the parts were ___.","a":"rejected"},{"s":"I don't think anyone showed him how to ___ the cutter properly.","a":"calibrate"},{"s":"Let's look at the numbers again in a ___.","a":"fortnight"}]},
+
+{"id":"eng_C1_2","t":"eng","l":"C1","title":"Automating the line","lines":[
+["B","I've read your proposal for the robotic cell. It's impressive, but I have some reservations."],
+["A","I expected as much. Is it the cost?"],
+["B","Partly. Half a million is a lot for a plant of our size. But what really concerns me is flexibility. We change products every few weeks."],
+["A","That was true of the previous generation of robots, which took days to reprogram. These can be taught a new task in a couple of hours by an operator, not a specialist."],
+["B","And what happens to the six people who currently do that job?"],
+["A","Nobody would be laid off. Two would be retrained to supervise the cell, and the rest would move to final assembly, where we're permanently short-staffed."],
+["B","That makes it easier to sell to the workforce. What about the payback period?"],
+["A","Just under three years, assuming volumes stay as they are. If they grow as forecast, closer to two."]],
+"q":[
+{"q":"What is the woman's main reservation about the proposal?","a":"Apart from the cost, she is worried about flexibility, because the plant changes products every few weeks.","k":[["flexibility","flexible"],["change products","every few weeks","products"]]},
+{"q":"How does the man answer that concern?","a":"The new robots can be taught a new task in a couple of hours by an operator, unlike the older ones that took days and needed a specialist.","k":[["couple of hours","two hours","hours"],["operator","specialist","reprogram"]]},
+{"q":"What would happen to the six workers?","a":"Nobody would be laid off: two would be retrained to supervise the cell and the rest would move to final assembly.","k":[["retrained","supervise"],["assembly","laid off","nobody"]]}],
+"gaps":[{"s":"It's impressive, but I have some ___.","a":"reservations"},{"s":"Nobody would be laid ___.","a":"off"},{"s":"What about the ___ period?","a":"payback"}]},
+
+{"id":"eng_C2_2","t":"eng","l":"C2","title":"The limits of simulation","lines":[
+["A","You've been rather outspoken about what you call the cult of simulation. Isn't that biting the hand that feeds you?"],
+["B","Not at all. I use these tools every day. My quarrel is with the unquestioning faith they inspire. A coloured stress plot looks so authoritative that people forget it's merely the consequence of whatever assumptions were fed in."],
+["A","Garbage in, garbage out, in other words."],
+["B","Quite, but with a twist. The garbage is now beautifully rendered. A hand calculation that is wrong tends to look wrong. A simulation that is wrong looks exactly like one that is right."],
+["A","So what would you have young engineers do?"],
+["B","Estimate the answer before they press the button. If the software disagrees with a rough calculation by a factor of ten, one of them is mistaken, and it pays to find out which."],
+["A","That sounds almost old-fashioned."],
+["B","I'd call it insurance. The tool is superb. It simply shouldn't be the only thing in the room that understands the problem."]],
+"q":[
+{"q":"What exactly does the engineer criticise?","a":"Not the tools themselves but the blind faith in them: an impressive plot makes people forget it only reflects the assumptions that were entered.","k":[["faith","trust","blind","unquestioning"],["assumptions"]]},
+{"q":"Why is a wrong simulation more dangerous than a wrong hand calculation?","a":"Because a wrong hand calculation tends to look wrong, whereas a wrong simulation looks exactly like a correct one.","k":[["looks","look"],["right","correct","same","exactly"]]},
+{"q":"What habit does she recommend?","a":"Estimating the answer with a rough calculation before running the software, and investigating if the two differ greatly.","k":[["estimate","rough","before"],["disagree","differ","factor","find out"]]}],
+"gaps":[{"s":"Isn't that biting the hand that ___ you?","a":"feeds"},{"s":"The garbage is now beautifully ___.","a":"rendered"},{"s":"I'd call it ___.","a":"insurance"}]},
+
+{"id":"elec_B1_2","t":"elec","l":"B1","title":"Buying a new fridge","lines":[
+["A","Good afternoon. Can I help you?"],
+["B","Yes, please. I'm looking for a new fridge. My old one is very noisy and it uses a lot of electricity."],
+["A","This model is very popular. It has an A energy label, so it is cheap to use."],
+["B","How much is it?"],
+["A","It is five hundred and twenty euros. This other one costs four hundred, but it uses more energy."],
+["B","Which one is better in the long term?"],
+["A","The first one. You save about forty euros a year on your electricity bill."],
+["B","OK, I'll take the first one. Can you deliver it on Thursday?"],
+["A","Yes, no problem. We also take your old fridge away for free."]],
+"q":[
+{"q":"Why does the woman want a new fridge?","a":"Her old one is very noisy and uses a lot of electricity.","k":[["noisy","noise"],["electricity","energy"]]},
+{"q":"What is the difference between the two models?","a":"The first costs 520 euros and has an A energy label; the second costs 400 but uses more energy.","k":[["520","five hundred and twenty","400","four hundred","cheaper","expensive"],["energy","label"]]},
+{"q":"What does the shop offer besides delivery on Thursday?","a":"They take the old fridge away for free.","k":[["old fridge","take","away"],["free"]]}],
+"gaps":[{"s":"My old one is very ___ and it uses a lot of electricity.","a":"noisy"},{"s":"You save about ___ euros a year on your electricity bill.","a":"forty"},{"s":"Can you ___ it on Thursday?","a":"deliver"}]},
+
+{"id":"elec_B2_2","t":"elec","l":"B2","title":"Charging at home","lines":[
+["B","I've just ordered an electric car, and I need a charger in my garage. Is that complicated?"],
+["A","Not usually. First I have to check how much power your house has contracted and what condition the panel is in."],
+["B","Why does that matter?"],
+["A","A charger can use as much electricity as the rest of the house put together. If the oven and the charger are on at the same time, the main switch could trip."],
+["B","So do I have to pay for more power?"],
+["A","Not necessarily. I can install a device that measures what the house is using and reduces the charging speed automatically when demand is high."],
+["B","That sounds sensible. How long does the car take to charge?"],
+["A","With a seven-kilowatt charger, about eight hours from empty, so overnight is ideal. And if you have a night tariff, it costs roughly a third of what you'd pay for petrol."]],
+"q":[
+{"q":"What does the electrician need to check first, and why?","a":"The contracted power and the condition of the panel, because a charger can use as much electricity as the rest of the house.","k":[["power","contracted","panel"],["as much","rest of the house","a lot"]]},
+{"q":"How can she avoid paying for more power?","a":"With a device that measures the house's consumption and automatically reduces the charging speed when demand is high.","k":[["device","measures"],["reduces","reduce","slower","speed"]]},
+{"q":"How long does charging take and how does the cost compare with petrol?","a":"About eight hours from empty with a seven-kilowatt charger; with a night tariff it costs roughly a third of petrol.","k":[["eight"],["third"]]}],
+"gaps":[{"s":"The main switch could ___.","a":"trip"},{"s":"So ___ is ideal.","a":"overnight"},{"s":"And if you have a night ___, it costs roughly a third of what you'd pay for petrol.","a":"tariff"}]},
+
+{"id":"elec_C1_2","t":"elec","l":"C1","title":"After the audit","lines":[
+["A","I've gone through the energy audit, and there are some easy wins, plus one finding that's rather more worrying."],
+["B","Let's start with the bad news."],
+["A","The power factor of the plant is poor, around nought point seven. The utility has been charging you a penalty for reactive energy every month, and nobody seems to have noticed."],
+["B","How much are we talking about?"],
+["A","Close to nine thousand euros a year. A capacitor bank would bring it down to almost nothing and would pay for itself in about fourteen months."],
+["B","That's a straightforward decision. And the easy wins?"],
+["A","The compressors run all weekend, although the factory is empty. A simple timer would save six percent of your annual bill. And a third of the motors are oversized for what they actually drive."],
+["B","Replacing motors sounds expensive."],
+["A","It would be, so I wouldn't replace them now. Fit variable speed drives to the four largest and change the rest as they wear out."]],
+"q":[
+{"q":"What is the worrying finding and what does it cost?","a":"The plant's power factor is poor, about 0.7, so the utility charges a penalty for reactive energy of nearly nine thousand euros a year.","k":[["power factor","reactive"],["nine thousand","9000","9,000","penalty"]]},
+{"q":"What solution does he propose for it?","a":"Installing a capacitor bank, which would almost eliminate the penalty and pay for itself in about fourteen months.","k":[["capacitor"],["fourteen","14","pay for itself"]]},
+{"q":"What are the 'easy wins' and what does he advise about the motors?","a":"A timer to stop the compressors at weekends, saving six percent; and for oversized motors, fitting variable speed drives to the four largest and replacing the rest as they wear out.","k":[["timer","compressors","weekend"],["variable speed","drives","wear out"]]}],
+"gaps":[{"s":"The utility has been charging you a ___ for reactive energy every month.","a":"penalty"},{"s":"A ___ bank would bring it down to almost nothing.","a":"capacitor"},{"s":"A third of the motors are ___ for what they actually drive.","a":"oversized"}]},
+
+{"id":"elec_C2_2","t":"elec","l":"C2","title":"Who pays for the grid?","lines":[
+["B","You've described the way we pay for electricity networks as a quiet injustice. That's a strong phrase."],
+["A","I stand by it. Most of what a grid costs is fixed; the wires have to be there whether you use them or not. Yet we charge for them largely by the kilowatt-hour."],
+["B","Which seems fair enough: use more, pay more."],
+["A","It was, until households started generating their own power. Someone with solar panels buys far less from the grid, and so contributes far less to its upkeep, while still relying on it every evening."],
+["B","And the shortfall is made up by everybody else."],
+["A","Precisely, and everybody else tends to be those who rent, or who simply can't afford panels. In effect, the less well-off are subsidising the better-off."],
+["B","So you'd penalise people for going green?"],
+["A","Hardly. I'd charge for the connection according to the capacity you require, and for the energy separately. Solar would remain attractive. It would merely stop being a way of passing the bill to your neighbour."]],
+"q":[
+{"q":"What mismatch does the speaker see in how networks are paid for?","a":"Most grid costs are fixed, since the wires must exist anyway, but users are charged mainly per kilowatt-hour consumed.","k":[["fixed"],["kilowatt-hour","per unit","consumption","by the"]]},
+{"q":"Why does he call the system unjust?","a":"Solar owners buy less from the grid and pay less for its upkeep while still depending on it, so the shortfall falls on those who rent or cannot afford panels: the poorer subsidise the richer.","k":[["solar","panels"],["rent","afford","less well-off","poor","subsidis"]]},
+{"q":"What reform does he suggest?","a":"Charging for the connection according to the capacity each user requires, and for the energy separately.","k":[["capacity","connection"],["separately","energy"]]}],
+"gaps":[{"s":"And so contributes far less to its ___.","a":"upkeep"},{"s":"And the ___ is made up by everybody else.","a":"shortfall"},{"s":"In effect, the less well-off are ___ the better-off.","a":"subsidising"}]},
+
+{"id":"work_B1_2","t":"work","l":"B1","title":"Asking for a day off","lines":[
+["A","Excuse me, Mrs Clark. Do you have a minute?"],
+["B","Yes, of course. Come in."],
+["A","I would like to ask for a day off next Friday. My sister is getting married on Saturday, and I need to travel to Madrid."],
+["B","Next Friday... Let me look at the calendar. We have an important delivery on that day."],
+["A","I know. I can finish my part on Thursday, and Peter says he can help with the rest."],
+["B","That sounds fine. Please send me an email, so I have it in writing."],
+["A","Thank you very much. I will send it today."],
+["B","Enjoy the wedding!"]],
+"q":[
+{"q":"Why does the man want a day off?","a":"His sister is getting married on Saturday and he needs to travel to Madrid on Friday.","k":[["sister","wedding","married"],["madrid","travel"]]},
+{"q":"What problem does the manager mention and how does he solve it?","a":"There is an important delivery that Friday; he will finish his part on Thursday and Peter will help with the rest.","k":[["delivery"],["thursday","peter"]]},
+{"q":"What does she ask him to do?","a":"To send her an email so that she has the request in writing.","k":[["email"],["writing"]]}],
+"gaps":[{"s":"I would like to ask for a day ___ next Friday.","a":"off"},{"s":"We have an important ___ on that day.","a":"delivery"},{"s":"Enjoy the ___!","a":"wedding"}]},
+
+{"id":"work_B2_2","t":"work","l":"B2","title":"A difficult client","lines":[
+["B","You look worried. Is it the Henderson account again?"],
+["A","Yes. He called three times this morning. He's changed the specifications again, and he still expects delivery on the same date."],
+["B","That's the fourth change this month. Have you told him it will affect the schedule?"],
+["A","I've tried, but he just says we promised. I'm afraid of losing the contract if I'm too direct."],
+["B","I understand, but if you keep saying yes, the team will burn out, and the quality will suffer."],
+["A","So what would you do?"],
+["B","Put everything in writing. Send him the new specifications with two options: the original date with the old design, or the new design two weeks later. Let him choose."],
+["A","That way it's his decision, not our fault. I'll write to him this afternoon."]],
+"q":[
+{"q":"What is the client doing that causes problems?","a":"He keeps changing the specifications, four times this month, while still expecting delivery on the same date.","k":[["changing","changed","specifications","changes"],["same date","date","delivery"]]},
+{"q":"Why hasn't the man been firm with him?","a":"He is afraid of losing the contract if he is too direct.","k":[["afraid","fear","worried"],["contract","losing","lose"]]},
+{"q":"What does his colleague advise?","a":"To put it in writing and offer two options: the original date with the old design, or the new design two weeks later.","k":[["writing","written"],["two options","two weeks","choose","options"]]}],
+"gaps":[{"s":"He's changed the ___ again.","a":"specifications"},{"s":"The team will burn ___, and the quality will suffer.","a":"out"},{"s":"That way it's his decision, not our ___.","a":"fault"}]},
+
+{"id":"work_C1_2","t":"work","l":"C1","title":"Feedback for a new manager","lines":[
+["B","I wanted to catch up on how your first three months as team leader have gone."],
+["A","Honestly? Harder than I'd anticipated. I used to be good at my job. Now I spend my days in meetings and I feel as if I produce nothing."],
+["B","That's an extremely common reaction. You're measuring yourself by your old job. Your output is no longer the drawings you make; it's what your team delivers."],
+["A","I do understand that in theory. In practice, when I see someone struggling, I end up doing the work myself, because it's quicker."],
+["B","Quicker today, certainly. But next month they'll bring you the same problem, and the month after."],
+["A","So I should let them get it wrong?"],
+["B","Within reason, yes. Ask questions that lead them to the answer instead of handing it over. It takes longer at first, and it pays off enormously."],
+["A","I'll try. It goes against every instinct I have."],
+["B","I know. That's precisely why so few people do it well."]],
+"q":[
+{"q":"How does the new manager feel and why?","a":"He finds it harder than expected: he spends his days in meetings and feels he produces nothing, although he used to be good at his job.","k":[["harder","difficult"],["meetings","produce nothing","produces nothing"]]},
+{"q":"What change of perspective does his boss suggest?","a":"That his output is no longer his own drawings but what his team delivers, so he should stop measuring himself by his old job.","k":[["team"],["output","delivers","old job"]]},
+{"q":"What mistake does he admit and what is the advice?","a":"He does struggling colleagues' work himself because it is quicker; she advises asking questions that lead them to the answer, even if it takes longer at first.","k":[["himself","doing the work","does the work","myself"],["questions"]]}],
+"gaps":[{"s":"Harder than I'd ___.","a":"anticipated"},{"s":"It takes longer at first, and it pays ___ enormously.","a":"off"},{"s":"It goes against every ___ I have.","a":"instinct"}]},
+
+{"id":"work_C2_2","t":"work","l":"C2","title":"The counter-offer","lines":[
+["A","I gather you've handed in your notice. I won't pretend I'm not disappointed."],
+["B","It wasn't an easy decision, and I'd rather you heard my reasons from me than through the grapevine."],
+["A","I appreciate that. Is it the money? Because I've been authorised to match whatever they're offering."],
+["B","That's generous, but it rather proves my point. I asked for a review eighteen months ago and was told there was nothing in the budget. Apparently there is, provided I threaten to leave."],
+["A","That's a fair criticism, and I shan't insult you by denying it."],
+["B","It isn't only the salary, in any case. The new role involves building a team from scratch. Here, I'd be waiting for someone to retire."],
+["A","Then I won't stand in your way. For what it's worth, the door stays open."],
+["B","Thank you. I mean to leave things in good order: everything will be documented before I go."]],
+"q":[
+{"q":"How does the manager try to keep her, and why does it backfire?","a":"He offers to match the other salary, but that proves her point: when she asked for a review eighteen months ago there was supposedly no budget, and now there is because she is leaving.","k":[["match","salary","money"],["eighteen months","budget","review","threaten"]]},
+{"q":"What other reason does she give for leaving?","a":"The new role lets her build a team from scratch, whereas in her current firm she would be waiting for someone to retire.","k":[["build","team","scratch"],["retire","waiting"]]},
+{"q":"How does the conversation end?","a":"On good terms: he says the door stays open, and she promises to leave everything documented and in good order.","k":[["door","open"],["documented","good order","order"]]}],
+"gaps":[{"s":"I'd rather you heard my reasons from me than through the ___.","a":"grapevine"},{"s":"The new role involves building a team from ___.","a":"scratch"},{"s":"Then I won't stand in your ___.","a":"way"}]},
+
+{"id":"daily_B1_2","t":"daily","l":"B1","title":"At the doctor's","lines":[
+["B","Good morning. What can I do for you?"],
+["A","Good morning, doctor. I have a bad cough and a headache. I started feeling ill three days ago."],
+["B","Do you have a temperature?"],
+["A","Yes, a little. Last night it was thirty-eight."],
+["B","Let me listen to your chest. Breathe in... and out. It's only a cold, but you need to rest."],
+["A","Do I need any medicine?"],
+["B","Take these tablets twice a day, after meals, and drink a lot of water. Stay at home for two days."],
+["A","Can I go to work on Thursday?"],
+["B","If you feel better, yes. If the cough continues next week, come back and see me."]],
+"q":[
+{"q":"What symptoms does the man have, and since when?","a":"A bad cough, a headache and a temperature of thirty-eight; he has felt ill for three days.","k":[["cough","headache"],["three days","temperature","38","thirty-eight"]]},
+{"q":"What does the doctor tell him to do?","a":"Take the tablets twice a day after meals, drink a lot of water and stay at home for two days.","k":[["tablets","twice"],["water","rest","home"]]},
+{"q":"When should he come back?","a":"If the cough continues next week.","k":[["cough","continues","still"],["next week","week"]]}],
+"gaps":[{"s":"I have a bad ___ and a headache.","a":"cough"},{"s":"Take these tablets ___ a day, after meals.","a":"twice"},{"s":"It's only a cold, but you need to ___.","a":"rest"}]},
+
+{"id":"daily_B2_2","t":"daily","l":"B2","title":"Renting a flat","lines":[
+["A","So this is the living room. As you can see, it gets plenty of light in the afternoon."],
+["B","It's lovely. And it's bigger than it looked in the photos. Is the furniture included?"],
+["A","Everything except the television. The washing machine is new, by the way."],
+["B","The advert said seven hundred and fifty a month. Does that include the bills?"],
+["A","It includes water and the building fees. Electricity and internet are separate. They usually come to about ninety euros."],
+["B","I see. And how much is the deposit?"],
+["A","Two months' rent, which you get back when you leave, provided there's no damage."],
+["B","I like it, but I'd need to think it over. Is anyone else interested?"],
+["A","Two couples are coming tomorrow, so I'd suggest letting me know by this evening."]],
+"q":[
+{"q":"What does the woman like about the flat, and what is included?","a":"It is bright and bigger than in the photos; all the furniture is included except the television, and the washing machine is new.","k":[["light","bright","bigger"],["furniture","television","washing machine"]]},
+{"q":"What costs are there besides the rent of 750?","a":"Electricity and internet, about ninety euros a month, and a deposit of two months' rent; water and building fees are included.","k":[["electricity","internet","ninety","90"],["deposit","two months"]]},
+{"q":"Why should she decide quickly?","a":"Two couples are coming to see the flat tomorrow, so the agent wants an answer by this evening.","k":[["two couples","other people","couples"],["this evening","tonight","tomorrow"]]}],
+"gaps":[{"s":"Is the ___ included?","a":"furniture"},{"s":"And how much is the ___?","a":"deposit"},{"s":"I'd need to think it ___.","a":"over"}]},
+
+{"id":"daily_C1_2","t":"daily","l":"C1","title":"Giving up the car","lines":[
+["B","Is it true you've sold your car? I never thought I'd see the day."],
+["A","Neither did I. But I sat down and worked out what it was costing me: insurance, parking, repairs, the lot. It came to over four thousand a year, for something that sat outside the house ninety-five percent of the time."],
+["B","But how do you manage? Surely it's a nuisance."],
+["A","Less than you'd imagine. I cycle to work, which takes about the same time as driving once you count the parking. For anything further, there's the train."],
+["B","And when you really need one? A trip to the mountains, say?"],
+["A","I rent one for the weekend. Even doing that once a month, I'm spending a fraction of what I used to."],
+["B","I'm not sure I could do it. I'd miss the freedom."],
+["A","That's what I assumed. What I've actually noticed is the freedom of not having to worry about it."]],
+"q":[
+{"q":"What made the man decide to sell his car?","a":"He calculated that it cost over four thousand a year in insurance, parking and repairs, while it sat unused ninety-five percent of the time.","k":[["four thousand","4000","4,000","cost"],["ninety-five","95","unused","sat"]]},
+{"q":"How does he get around now?","a":"He cycles to work, takes the train for longer journeys, and rents a car for the occasional weekend trip.","k":[["cycle","cycles","bike"],["train","rent","rents"]]},
+{"q":"How do he and the woman differ about freedom?","a":"She thinks she would miss the freedom a car gives; he has found freedom in not having to worry about owning one.","k":[["miss"],["worry","not having"]]}],
+"gaps":[{"s":"I sat down and worked ___ what it was costing me.","a":"out"},{"s":"Surely it's a ___.","a":"nuisance"},{"s":"I'm spending a ___ of what I used to.","a":"fraction"}]},
+
+{"id":"daily_C2_2","t":"daily","l":"C2","title":"The clutter of things","lines":[
+["A","Your book argues that our homes have become warehouses. Aren't you overstating it?"],
+["B","If anything, I'm understating it. The average household contains several times as many objects as it did two generations ago, and a whole industry now exists to rent us space for what won't fit."],
+["A","Yet people seem perfectly happy to keep buying."],
+["B","Happy at the moment of purchase, certainly. The pleasure is real, but it's remarkably short-lived, whereas the object stays, demanding to be stored, dusted, insured and, eventually, disposed of."],
+["A","So your advice is to throw it all out?"],
+["B","No, and I've little patience with the fashionable minimalism that turns owning nothing into a competitive sport. My point is more modest. Before acquiring something, ask what it will cost you in attention, not just in money."],
+["A","And has that worked in your own home?"],
+["B","Imperfectly. My weakness is books, and I've long since given up pretending they count as an exception."]],
+"q":[
+{"q":"What evidence does the author give that homes have become 'warehouses'?","a":"Households hold several times as many objects as two generations ago, and an entire industry rents out storage space for what does not fit.","k":[["several times","more objects","objects","many more"],["industry","storage","rent"]]},
+{"q":"How does she contrast the pleasure of buying with the object itself?","a":"The pleasure is real but short-lived, while the object remains and has to be stored, dusted, insured and eventually disposed of.","k":[["short-lived","brief","short"],["stored","stays","remains","dusted","disposed"]]},
+{"q":"What does she recommend, and what does she reject?","a":"She rejects fashionable minimalism as a competitive sport; she simply recommends asking what an object will cost in attention, not just money, before acquiring it.","k":[["minimalism"],["attention"]]}],
+"gaps":[{"s":"The pleasure is real, but it's remarkably ___.","a":"short-lived"},{"s":"Ask what it will cost you in ___, not just in money.","a":"attention"},{"s":"I've long since given up ___ they count as an exception.","a":"pretending"}]},
+
+{"id":"cook_B1_2","t":"cook","l":"B1","title":"At the bakery","lines":[
+["B","Good morning! What would you like?"],
+["A","Good morning. Two loaves of bread, please, and six of those small cakes."],
+["B","The chocolate ones or the lemon ones?"],
+["A","Three of each, please. Are they fresh?"],
+["B","Yes, I made them this morning at five o'clock. Anything else?"],
+["A","Do you have a birthday cake? It's my daughter's birthday tomorrow."],
+["B","I can make one for tomorrow. What flavour would she like?"],
+["A","Strawberry, please. For ten people."],
+["B","Perfect. It will be ready at eleven. That's twelve euros fifty for today."]],
+"q":[
+{"q":"What does the man buy today?","a":"Two loaves of bread and six small cakes: three chocolate and three lemon.","k":[["bread","loaves"],["cakes","chocolate","lemon"]]},
+{"q":"What does he order for tomorrow, and why?","a":"A strawberry birthday cake for ten people, because it is his daughter's birthday.","k":[["strawberry","birthday cake","cake"],["daughter","birthday"]]},
+{"q":"When will the cake be ready and how much does he pay today?","a":"At eleven tomorrow. Today he pays twelve euros fifty.","k":[["eleven","11"],["twelve","12"]]}],
+"gaps":[{"s":"Two ___ of bread, please.","a":"loaves"},{"s":"What ___ would she like?","a":"flavour"},{"s":"It will be ___ at eleven.","a":"ready"}]},
+
+{"id":"cook_B2_2","t":"cook","l":"B2","title":"A cooking disaster","lines":[
+["A","How was your dinner party on Saturday?"],
+["B","Don't ask. It was a complete disaster from start to finish."],
+["A","Oh dear. What went wrong?"],
+["B","First, I forgot to take the meat out of the freezer, so it was still frozen at six o'clock. Then, while I was trying to defrost it, I burnt the sauce."],
+["A","So what did you serve in the end?"],
+["B","I was about to order pizza when my neighbour knocked on the door. She'd smelt the smoke! She lent me a huge dish of lasagne that she'd made for the week."],
+["A","That was lucky. Did your guests notice anything?"],
+["B","They said it was the best lasagne they'd ever had, and asked for the recipe. I had to admit the truth."],
+["A","At least it makes a good story."]],
+"q":[
+{"q":"What two things went wrong in the kitchen?","a":"She forgot to take the meat out of the freezer, so it was still frozen at six, and then she burnt the sauce while defrosting it.","k":[["frozen","freezer","meat"],["burnt","burned","sauce"]]},
+{"q":"How was the dinner saved?","a":"Her neighbour, who had smelt the smoke, lent her a huge dish of lasagne she had made for the week.","k":[["neighbour","neighbor"],["lasagne","lasagna"]]},
+{"q":"What happened when the guests praised the food?","a":"They said it was the best lasagne they had ever had and asked for the recipe, so she had to admit the truth.","k":[["recipe","best"],["admit","truth","told"]]}],
+"gaps":[{"s":"It was a complete ___ from start to finish.","a":"disaster"},{"s":"While I was trying to ___ it, I burnt the sauce.","a":"defrost"},{"s":"I had to ___ the truth.","a":"admit"}]},
+
+{"id":"cook_C1_2","t":"cook","l":"C1","title":"Running a restaurant","lines":[
+["B","People imagine that owning a restaurant is about cooking. How much of your week do you actually spend at the stove?"],
+["A","Perhaps a third, if I'm lucky. The rest goes on suppliers, staff rotas and paperwork. Nobody warns you that you're opening a small logistics company that happens to serve dinner."],
+["B","What's the hardest part?"],
+["A","Margins, without a doubt. Out of every ten euros a customer spends, about three go on ingredients, three on wages and another three on rent and energy. What's left is the profit, in a good month."],
+["B","That leaves very little room for error."],
+["A","None whatsoever. One quiet week or a broken fridge, and the month is gone. That's why so many places close within two years."],
+["B","Then why do it?"],
+["A","Because on a Saturday night, when the room is full and everything comes together, there's nothing like it. It's irrational, I admit. Most worthwhile things are."]],
+"q":[
+{"q":"How does the chef actually spend his week?","a":"Only about a third at the stove; the rest goes on suppliers, staff rotas and paperwork, like running a small logistics company.","k":[["third"],["suppliers","rotas","paperwork","logistics"]]},
+{"q":"How does he break down each ten euros a customer spends?","a":"About three on ingredients, three on wages and three on rent and energy, leaving roughly one euro of profit in a good month.","k":[["ingredients","wages","rent"],["profit","one","left"]]},
+{"q":"Why does he keep doing it despite the risks?","a":"Because of the feeling on a full Saturday night when everything comes together; he admits it is irrational.","k":[["saturday","full","comes together"],["irrational","nothing like it","feeling"]]}],
+"gaps":[{"s":"The rest goes on suppliers, staff ___ and paperwork.","a":"rotas"},{"s":"___, without a doubt.","a":"Margins"},{"s":"That leaves very little room for ___.","a":"error"}]},
+
+{"id":"cook_C2_2","t":"cook","l":"C2","title":"The cult of the ingredient","lines":[
+["A","Menus these days read like maps. Every carrot comes with the name of its farm. Is that information, or theatre?"],
+["B","A little of both. There's a genuine story behind it: good produce matters more than technique, and chefs spent decades ignoring that."],
+["A","But?"],
+["B","But the pendulum has swung absurdly far. I've been served a single tomato, sliced, with a lecture on the soil it grew in. At some point, somebody has to actually cook."],
+["A","Isn't restraint a virtue, though? Letting the ingredient speak for itself?"],
+["B","It's a virtue when it's a choice, and an excuse when it's a habit. It takes more skill, not less, to know that a perfect peach needs nothing. But that judgement is rare, and the fashion has given a great many mediocre kitchens permission to do very little and charge a great deal."],
+["A","You don't sound like a fan."],
+["B","On the contrary, I love the idea. I simply mistrust anything that becomes compulsory."]],
+"q":[
+{"q":"What does the critic accept as valid in the trend?","a":"That good produce matters more than technique, something chefs ignored for decades.","k":[["produce","ingredients","ingredient"],["technique","ignored","matters more"]]},
+{"q":"What example does she give of the trend going too far?","a":"Being served a single sliced tomato accompanied by a lecture about the soil it grew in.","k":[["tomato"],["lecture","soil"]]},
+{"q":"When is restraint a virtue and when is it an excuse, according to her?","a":"A virtue when it is a deliberate choice requiring judgement; an excuse when it is a habit that lets mediocre kitchens do little and charge a lot.","k":[["choice"],["habit","excuse","mediocre","charge"]]}],
+"gaps":[{"s":"But the ___ has swung absurdly far.","a":"pendulum"},{"s":"Letting the ingredient ___ for itself?","a":"speak"},{"s":"I simply ___ anything that becomes compulsory.","a":"mistrust"}]},
+
+{"id":"foot_B1_2","t":"foot","l":"B1","title":"Buying tickets","lines":[
+["A","Hello. I'd like two tickets for the match on Saturday, please."],
+["B","Certainly. Which part of the stadium do you prefer?"],
+["A","What is the cheapest option?"],
+["B","Behind the goal, tickets are fifteen euros. In the main stand they are thirty-five."],
+["A","Behind the goal is fine. Is there a discount for children? My son is nine."],
+["B","Yes, children under twelve pay half price. So that's twenty-two euros fifty in total."],
+["A","Great. What time do the doors open?"],
+["B","At half past four. The match starts at six. Don't forget to bring the tickets on your phone."]],
+"q":[
+{"q":"What tickets does the man choose and why?","a":"Two tickets behind the goal, because they are the cheapest at fifteen euros.","k":[["behind the goal","goal"],["cheapest","fifteen","15","cheap"]]},
+{"q":"What discount does he get?","a":"His nine-year-old son pays half price because children under twelve get a discount, so the total is twenty-two euros fifty.","k":[["half price","half"],["son","child","children","under twelve"]]},
+{"q":"What time do the doors open and when does the match start?","a":"The doors open at half past four and the match starts at six.","k":[["half past four","4:30","4.30","four thirty"],["six","6"]]}],
+"gaps":[{"s":"Is there a ___ for children?","a":"discount"},{"s":"Children under twelve pay ___ price.","a":"half"},{"s":"What time do the ___ open?","a":"doors"}]},
+
+{"id":"foot_B2_2","t":"foot","l":"B2","title":"The injury","lines":[
+["B","I heard you got injured on Sunday. What happened?"],
+["A","It was a stupid accident. I was running for the ball when I stepped in a hole in the pitch and twisted my ankle."],
+["B","Ouch. Is it broken?"],
+["A","No, thank goodness. The doctor said it's a sprain, but quite a bad one. I have to keep my foot up and put ice on it."],
+["B","How long will you be out?"],
+["A","At least four weeks, so I'll miss the cup match. I'm really annoyed, because I'd been training hard for it."],
+["B","That's a shame. Still, it's better to recover properly than to come back too early."],
+["A","That's what the physio told me. Last year I rushed back after an injury and ended up missing half the season."]],
+"q":[
+{"q":"How did the man get injured?","a":"He was running for the ball, stepped in a hole in the pitch and twisted his ankle.","k":[["hole"],["ankle","twisted"]]},
+{"q":"What is the diagnosis and the treatment?","a":"A bad sprain, not a break; he has to keep his foot up and put ice on it.","k":[["sprain"],["ice","foot up","rest"]]},
+{"q":"Why is he annoyed, and why will he be careful this time?","a":"He will be out for at least four weeks and miss the cup match he had trained hard for; last year he came back too soon and missed half the season.","k":[["four weeks","cup match","miss"],["last year","rushed","too early","half the season"]]}],
+"gaps":[{"s":"The doctor said it's a ___, but quite a bad one.","a":"sprain"},{"s":"I'm really ___, because I'd been training hard for it.","a":"annoyed"},{"s":"It's better to ___ properly than to come back too early.","a":"recover"}]},
+
+{"id":"foot_C1_2","t":"foot","l":"C1","title":"Youth academies","lines":[
+["A","Your club is famous for its academy. How many of the boys who join at twelve actually make it as professionals?"],
+["B","Fewer than one in a hundred. And I think we have a duty to be honest about that from day one, with the boys and especially with the parents."],
+["A","That must be a difficult conversation."],
+["B","It is, because every family is convinced theirs is the exception. But the damage done by false hope is far worse. I've seen sixteen-year-olds released with no qualifications and no idea who they are without football."],
+["A","So what do you do differently?"],
+["B","School comes first, and I mean that literally: if their marks drop, they don't train. We also bring former players in to talk about what happened after they were let go."],
+["A","Doesn't that discourage them?"],
+["B","Oddly enough, no. The ones with real ambition work harder, and the others leave with something to fall back on. Either way, we've done right by them."]],
+"q":[
+{"q":"What statistic does the coach give, and what does she conclude from it?","a":"Fewer than one in a hundred boys become professionals, so the club has a duty to be honest with them and their parents from the start.","k":[["one in a hundred","1%","one percent","fewer than one"],["honest","honesty","parents"]]},
+{"q":"What harm has she seen false hope cause?","a":"Sixteen-year-olds released with no qualifications and no sense of who they are without football.","k":[["qualifications"],["released","sixteen","who they are","identity"]]},
+{"q":"What does the academy do differently?","a":"School comes first: if marks drop, they don't train. Former players also come to talk about life after being released.","k":[["school","marks"],["former players","ex-players"]]}],
+"gaps":[{"s":"I think we have a ___ to be honest about that from day one.","a":"duty"},{"s":"I've seen sixteen-year-olds ___ with no qualifications.","a":"released"},{"s":"The others leave with something to fall ___ on.","a":"back"}]},
+
+{"id":"foot_C2_2","t":"foot","l":"C2","title":"The art of commentary","lines":[
+["B","You've commentated on more than two thousand matches. What separates a good commentator from a merely competent one?"],
+["A","Silence, oddly enough. The beginner is terrified of it and fills every second with statistics. The craftsman knows that when a stadium erupts, the best thing he can possibly say is nothing at all."],
+["B","Television must make that easier than radio."],
+["A","Easier, and more dangerous. On radio you are the listener's eyes, so you must paint the picture. On television the picture is already there, and the temptation is to describe what everyone can perfectly well see."],
+["B","So what should one add?"],
+["A","Context and feeling. Why this pass matters, what this player went through to be here. And, very occasionally, a phrase that fits the moment so exactly that people repeat it for decades."],
+["B","Can those be prepared in advance?"],
+["A","The ones that are prepared invariably sound it. The lines that last are the ones that escape before you've had time to polish them."]],
+"q":[
+{"q":"What does the commentator consider the mark of a master?","a":"Knowing when to stay silent: beginners fill every second with statistics, but when the stadium erupts the best comment is none at all.","k":[["silence","silent","nothing"],["statistics","beginner","erupts"]]},
+{"q":"Why is television 'easier and more dangerous' than radio?","a":"On radio you must paint the picture for the listener; on television the picture is already there, so the temptation is to describe what viewers can already see.","k":[["radio","paint","eyes"],["already see","can see","describe"]]},
+{"q":"What does he say about memorable phrases?","a":"They cannot be prepared: prepared lines always sound prepared, and the ones that last come out spontaneously before he has time to polish them.","k":[["prepared"],["spontaneous","escape","polish","before"]]}],
+"gaps":[{"s":"The ___ knows that when a stadium erupts, the best thing he can possibly say is nothing at all.","a":"craftsman"},{"s":"The ___ is to describe what everyone can perfectly well see.","a":"temptation"},{"s":"The ones that are prepared ___ sound it.","a":"invariably"}]}
+]
