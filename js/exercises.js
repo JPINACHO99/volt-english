@@ -31,6 +31,11 @@
     if (g[0] === 'wf') return { type: 'input', ref, note, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
     return { type: 'input', ref, note, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
   }
+  function judgeItem(i) {
+    const g = D.grammar[i], wrong = [0, 1, 2, 3].filter((k) => k !== g[5]), use = Math.random() < 0.5 ? g[5] : wrong[Math.floor(Math.random() * 3)];
+    const notes = (D.gopt || {})[g[3]] || [], note = g[6] || (D.gnotes || [])[i] || '';
+    return { type: 'judge', ref: { k: 'g', i }, sentence: g[3].replace('___', g[4][use]), right: g[3].replace('___', g[4][g[5]]), ok: use === g[5], chosen: g[4][use], wrongNote: notes[use] || '', note };
+  }
   const pvPlain = (ex) => ex.replace(/[\[\]]/g, '');
   function phrasalItem(i, m) {
     const p = D.phrasal[i], ref = { k: 'p', i, m }, same = D.phrasal.map((x, j) => j).filter((j) => j !== i && D.phrasal[j][1] === p[1] && D.phrasal[j][0] !== p[0]);
@@ -69,19 +74,23 @@
     if (sec === 'phrasal') {
       if (mode === 'list') return phrasalList(level);
       const idx = shuffle(D.phrasal.map((p, i) => i).filter((i) => D.phrasal[i][1] === level));
-      if (mode === 'pcards') return V.startCards(idx.slice(0, 15).map((i) => { const p = D.phrasal[i]; V.srsAdd(p[0], p[2], pvPlain(p[3])); return p[0]; }));
-      items = idx.slice(0, 10).map((i) => phrasalItem(i, mode === 'meaning' ? 'm' : mode === 'choose' ? 'c' : 'p'));
+      if (mode === 'pmatch') { const g = idx.slice(0, 10); items = [g.slice(0, 5), g.slice(5, 10)].map((part) => ({ type: 'pairs', left: part.map((i) => D.phrasal[i][0]), right: part.map((i) => D.phrasal[i][2]), say: true, instr: 'Tap a phrasal verb, then tap its meaning.' })); }
+      else if (mode === 'pcards') return V.startCards(idx.slice(0, 15).map((i) => { const p = D.phrasal[i]; V.srsAdd(p[0], p[2], pvPlain(p[3])); return p[0]; }));
+      if (!items.length) items = idx.slice(0, 10).map((i) => phrasalItem(i, mode === 'meaning' ? 'm' : mode === 'choose' ? 'c' : 'p'));
     } else if (sec === 'grammar') {
-      let idx = D.grammar.map((g, i) => i).filter((i) => D.grammar[i][1] === level && (mode === 'mix' || D.grammar[i][0] === mode));
+      let idx = D.grammar.map((g, i) => i).filter((i) => D.grammar[i][1] === level && (mode === 'mix' || D.grammar[i][0] === (mode === 'judge' ? 'mc' : mode)));
       idx = shuffle(idx).sort((a, b) => (D.grammar[b][2] === topic) - (D.grammar[a][2] === topic)).slice(0, 10);
-      items = idx.map(grammarItem);
+      items = idx.map(mode === 'judge' ? judgeItem : grammarItem);
     } else if (sec === 'vocab') {
       const n = D.vocab[topic][level].w.length;
+      const cw = D.vocab[topic][level].w;
       if (mode === 'define') items = shuffle([...Array(n).keys()]).slice(0, 8).map((i) => defineItem(topic, level, i));
+      else if (mode === 'match') { const g = shuffle([...Array(n).keys()]).slice(0, 10); items = [g.slice(0, 5), g.slice(5, 10)].map((part) => ({ type: 'pairs', left: part.map((i) => cw[i][0]), right: part.map((i) => cw[i][1]), refs: part.map((i) => ({ k: 'v', t: topic, l: level, i })), say: true, instr: 'Tap a word, then tap its meaning.' })); }
+      else if (mode === 'spell') items = shuffle([...Array(n).keys()]).slice(0, 8).map((i) => ({ type: 'input', ref: { k: 'v', t: topic, l: level, i }, speakWord: cw[i][0], hint: cw[i][1], sentence: '___', answers: [cw[i][0]], word: cw[i], instr: 'Listen and write the word or phrase you hear. Play it as many times as you like.' }));
       else if (mode === 'cards') return V.startCards(D.vocab[topic][level].w.map((w) => { V.srsAdd(w[0], w[1], w[2]); return w[0]; }));
       else { const c2 = D.vocab[topic][level], n2 = c2.para3 ? 3 : c2.para2 ? 2 : 1; S.paraTurn = ((S.paraTurn || 0) + 1) % 3; items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank', which: S.paraTurn % n2 }]; }
     } else if (sec === 'reading') items = [{ type: mode === 'mc' ? 'readmc' : mode === 'gapped' ? 'gaptext' : 'match', r: cell(D.reading) }];
-    else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : 'listengaps', a: cell(D.listening) }];
+    else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : mode === 'who' ? 'listenwho' : 'listengaps', a: cell(D.listening) }];
     else if (sec === 'speaking') {
       const sc = D.scenes[topic];
       if (mode === 'describe') { const s = sc[Math.floor(Math.random() * 2)]; items = [{ type: 'speak', kind: 'describe', prompt: 'Describe this picture in as much detail as you can. Say what you can see, what is probably happening and how the people might feel.', scenes: [s], model: s.model }]; }
@@ -207,6 +216,46 @@
 
   /* ---------- renderers ---------- */
   const RENDER = {
+    pairs(it, box, ctx) {
+      const n = it.left.length, order = shuffle([...Array(n).keys()]), missed = new Set(); let selL = -1, done = 0;
+      const L = it.left.map((t, i) => h('button', { class: 'opt', onclick: () => { if (L[i].disabled) return; selL = i; L.forEach((b, j) => b.classList.toggle('sel', j === i)); if (it.say) V.say(t); } }, t));
+      const Rb = order.map((ri) => h('button', { class: 'opt', onclick: () => {
+        if (selL < 0 || Rb[order.indexOf(ri)].disabled) return;
+        const b = Rb[order.indexOf(ri)];
+        if (ri === selL) {
+          [L[selL], b].forEach((x) => { x.classList.remove('sel'); x.classList.add('good'); x.disabled = true; });
+          if (it.refs) record(it.refs[selL], !missed.has(selL));
+          selL = -1; done++;
+          if (done === n) { const ok = n - missed.size; box.append(verdictLine(ok === n, ok + ' of ' + n + ' matched at the first try.')); ctx.finish({ ok, tot: n, weak: [...missed].map((k) => it.left[k] + ' — ' + it.right[k]) }); }
+        } else { missed.add(selL); b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 600); }
+      } }, it.right[ri]));
+      box.append(instr(it.instr), h('div', { class: 'pairs' }, h('div', { class: 'opts' }, L), h('div', { class: 'opts' }, Rb)));
+    },
+    judge(it, box, ctx) {
+      let done = false;
+      const pick = (said) => {
+        if (done) return; done = true; btns.forEach((b) => (b.disabled = true));
+        const good = said === it.ok; btns[said ? 0 : 1].classList.add(good ? 'good' : 'bad'); record(it.ref, good);
+        box.append(verdictLine(good, it.ok ? 'The sentence is correct.' : 'The sentence is wrong. Correct version: ' + it.right),
+          !it.ok && it.wrongNote ? h('div', { class: 'fb bad' }, h('span', { class: 'tag bad' }, 'What is wrong'), h('div', null, h('b', null, it.chosen + ': '), it.wrongNote)) : null, why(it.note));
+        ctx.finish({ ok: good ? 1 : 0, tot: 1, weak: good ? [] : [it.right] });
+      };
+      const btns = [h('button', { class: 'opt', onclick: () => pick(true) }, '✓ Correct'), h('button', { class: 'opt', onclick: () => pick(false) }, '✗ Wrong')];
+      box.append(instr('Is this sentence grammatically correct?'), h('p', { class: 'text' }, h('b', null, it.sentence)), h('div', { class: 'opts' }, btns));
+    },
+    listenwho(it, box, ctx) {
+      const a = it.a, seen = new Set(), lines = shuffle(a.lines.filter((l) => !seen.has(l[1]) && seen.add(l[1]))).slice(0, 5), picks = lines.map(() => null), groups = [];
+      box.append(instr('Listen to the dialogue. Who says each sentence: the man or the woman?'), audioBlock(a));
+      lines.forEach((l, li) => {
+        const bs = ['A', 'B'].map((sp) => h('button', { class: 'opt', onclick: () => { if (groups.done) return; picks[li] = sp; bs.forEach((b) => b.classList.toggle('sel', b === bs[sp === 'A' ? 0 : 1])); } }, sp === 'A' ? '👨 The man' : '👩 The woman'));
+        groups.push(bs); box.append(h('p', { class: 'text' }, '“' + l[1] + '”'), h('div', { class: 'scenes' }, bs));
+      });
+      box.append(checkBtn('Check', (b) => {
+        if (picks.includes(null)) return; b.disabled = true; groups.done = true; let ok = 0; const weak = [];
+        lines.forEach((l, li) => { const good = picks[li] === l[0]; groups[li][l[0] === 'A' ? 0 : 1].classList.add('good'); if (!good) { groups[li][l[0] === 'A' ? 1 : 0].classList.add('bad'); weak.push('“' + l[1].slice(0, 60) + '…”'); } else ok++; });
+        box.append(transcript(a)); ctx.finish({ ok, tot: lines.length, weak });
+      }));
+    },
     choice(it, box, ctx) {
       let sel = -1, done = false;
       const opts = it.options.map((o, i) => h('button', { class: 'opt', onclick: () => { if (done) return; sel = i; opts.forEach((b, j) => b.classList.toggle('sel', j === i)); } }, o));
@@ -232,7 +281,7 @@
       };
       const btn = checkBtn('Check', go);
       inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(btn.firstChild); });
-      box.append(instr(it.instr), it.audio ? audioBlock(it.audio) : null, it.pre ? h('p', { class: 'text' }, it.pre) : null, it.root ? h('p', null, h('span', { class: 'pill kw' }, it.root)) : null,
+      box.append(instr(it.instr), it.speakWord ? h('div', { class: 'row', style: 'justify-content:center;margin:10px 0' }, h('button', { class: 'btn sec', onclick: () => V.say(it.speakWord) }, '🔊 Play the word')) : null, it.audio ? audioBlock(it.audio) : null, it.pre ? h('p', { class: 'text' }, it.pre) : null, it.root ? h('p', null, h('span', { class: 'pill kw' }, it.root)) : null,
         h('p', { class: 'text' }, parts[0], inp, parts[1] || ''), hintBtn(it.hint), btn);
       setTimeout(() => inp.focus(), 50);
     },

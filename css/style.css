@@ -57,3 +57,6 @@ audio{width:100%;margin:8px 0}
 hr{border:0;border-top:1px solid var(--line);margin:14px 0}
 del{color:var(--bad)}ins{color:var(--good);text-decoration:none;font-weight:600}
 @media (max-width:420px){.scene{font-size:2rem}.scenes{grid-template-columns:1fr}}
+
+.pairs{display:grid;grid-template-columns:1fr 1.4fr;gap:10px}.pairs .opts{margin:0;align-content:start}.pairs .opt{font-size:.92rem;padding:9px 11px}
+.opt:disabled{cursor:default}
