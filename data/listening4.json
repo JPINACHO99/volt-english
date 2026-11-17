@@ -1,0 +1,399 @@
+[
+{
+"id": "job_B1_2",
+"t": "job",
+"l": "B1",
+"title": "Practising for the interview",
+"lines": [
+[
+"B",
+"Your interview is tomorrow, right? Do you want to practise?"
+],
+[
+"A",
+"Yes, please. I'm really nervous."
+],
+[
+"B",
+"OK. I'm the interviewer. What are your strengths?"
+],
+[
+"A",
+"Well... I'm hard-working and I learn fast."
+],
+[
+"B",
+"Good, but give an example. Interviewers like examples."
+],
+[
+"A",
+"OK. In my last job, I learned to use a new program in one week, and then I helped my colleagues."
+],
+[
+"B",
+"Much better! And remember to smile and to look at the interviewer."
+],
+[
+"A",
+"Thanks. What time should I leave home?"
+],
+[
+"B",
+"The interview is at ten, and it takes forty minutes to get there. Leave at nine, so you arrive early."
+]
+],
+"q": [
+{
+"q": "Why does the man want to practise?",
+"a": "Because his interview is tomorrow and he is really nervous.",
+"k": [
+[
+"nervous"
+],
+[
+"tomorrow",
+"interview"
+]
+]
+},
+{
+"q": "What advice does the woman give about his strengths?",
+"a": "To give an example, because interviewers like examples.",
+"k": [
+[
+"example"
+]
+]
+},
+{
+"q": "What time should he leave home, and why?",
+"a": "At nine, because the interview is at ten and it takes forty minutes, so he will arrive early.",
+"k": [
+[
+"nine",
+"9"
+],
+[
+"early",
+"forty",
+"40"
+]
+]
+}
+],
+"gaps": [
+{
+"s": "I'm hard-working and I learn ___.",
+"a": "fast"
+},
+{
+"s": "I learned to use a new ___ in one week.",
+"a": "program"
+},
+{
+"s": "Remember to ___ and to look at the interviewer.",
+"a": "smile"
+}
+]
+},
+{
+"id": "job_B2_2",
+"t": "job",
+"l": "B2",
+"title": "Questions for the company",
+"lines": [
+[
+"B",
+"That's all from my side. Do you have any questions for me?"
+],
+[
+"A",
+"Yes, a couple. Could you tell me what a typical day in this role looks like?"
+],
+[
+"B",
+"Sure. Mornings are usually spent on site with the installers, and afternoons in the office preparing documentation."
+],
+[
+"A",
+"That sounds varied. And what kind of training do new employees receive?"
+],
+[
+"B",
+"There's a two-week induction, and after that each new engineer has a mentor for the first six months."
+],
+[
+"A",
+"That's great. Finally, what are the next steps in the process?"
+],
+[
+"B",
+"We're interviewing two more candidates this week. We'll let everyone know by next Wednesday, and the final stage is a short technical test."
+],
+[
+"A",
+"Perfect. Thank you very much for your time."
+]
+],
+"q": [
+{
+"q": "What does a typical day in the role involve?",
+"a": "Mornings on site with the installers and afternoons in the office preparing documentation.",
+"k": [
+[
+"site",
+"installers"
+],
+[
+"office",
+"documentation"
+]
+]
+},
+{
+"q": "What training do new employees receive?",
+"a": "A two-week induction and then a mentor for the first six months.",
+"k": [
+[
+"induction",
+"two-week",
+"two weeks"
+],
+[
+"mentor",
+"six months"
+]
+]
+},
+{
+"q": "What are the next steps in the process?",
+"a": "Two more candidates are being interviewed; everyone will hear by next Wednesday, and the final stage is a short technical test.",
+"k": [
+[
+"wednesday"
+],
+[
+"test",
+"technical"
+]
+]
+}
+],
+"gaps": [
+{
+"s": "There's a two-week ___.",
+"a": "induction"
+},
+{
+"s": "Each new engineer has a ___ for the first six months.",
+"a": "mentor"
+},
+{
+"s": "The final stage is a short ___ test.",
+"a": "technical"
+}
+]
+},
+{
+"id": "job_C1_2",
+"t": "job",
+"l": "C1",
+"title": "The career gap",
+"lines": [
+[
+"B",
+"I notice there's a gap of about eighteen months on your CV. Could you tell me about that?"
+],
+[
+"A",
+"Of course. After my father became ill, I decided to step away from work to care for him. It was a difficult period, but I don't regret it."
+],
+[
+"B",
+"I'm sorry to hear that. How did you keep your skills up to date during that time?"
+],
+[
+"A",
+"I made a point of it. I completed two online courses in project management, and I did some freelance design work for a local firm."
+],
+[
+"B",
+"And how do you feel about returning to a full-time role now?"
+],
+[
+"A",
+"Honestly, I'm keen to get back. The break gave me perspective, and I think it made me more organised, because I had to juggle a lot of responsibilities."
+],
+[
+"B",
+"That's helpful to know. Some people find the first few months back quite demanding."
+],
+[
+"A",
+"I'm sure it will take some adjustment, but I've prepared for it, and I'd rather be upfront about the gap than hide it."
+]
+],
+"q": [
+{
+"q": "Why does the candidate have a gap on his CV?",
+"a": "He stepped away from work for about eighteen months to care for his father, who became ill.",
+"k": [
+[
+"father",
+"care"
+],
+[
+"eighteen months",
+"18",
+"ill"
+]
+]
+},
+{
+"q": "How did he keep his skills up to date?",
+"a": "He completed two online courses in project management and did freelance design work for a local firm.",
+"k": [
+[
+"courses",
+"online"
+],
+[
+"freelance",
+"design"
+]
+]
+},
+{
+"q": "How does he present the break in a positive way?",
+"a": "He says it gave him perspective and made him more organised, because he had to juggle many responsibilities, and he prefers to be upfront about it.",
+"k": [
+[
+"perspective",
+"organised",
+"organized"
+],
+[
+"upfront",
+"juggle",
+"honest"
+]
+]
+}
+],
+"gaps": [
+{
+"s": "I decided to step ___ from work to care for him.",
+"a": "away"
+},
+{
+"s": "I had to ___ a lot of responsibilities.",
+"a": "juggle"
+},
+{
+"s": "I'd rather be ___ about the gap than hide it.",
+"a": "upfront"
+}
+]
+},
+{
+"id": "job_C2_2",
+"t": "job",
+"l": "C2",
+"title": "Turning down an offer",
+"lines": [
+[
+"B",
+"Thanks for calling back. I take it you've reached a decision?"
+],
+[
+"A",
+"I have, and I wanted to tell you personally rather than by email. I'm afraid I've decided to decline the offer."
+],
+[
+"B",
+"I'm sorry to hear that. May I ask what tipped the balance?"
+],
+[
+"A",
+"Of course. It wasn't the salary, which was more than fair. It's that the other role would let me lead a team from the outset, and at this point in my career that's what I need."
+],
+[
+"B",
+"I understand. For what it's worth, we'd have been happy to revisit the scope of the role."
+],
+[
+"A",
+"That's kind of you, and I genuinely considered it. But I'd rather not ask you to reshape a position around me, only for it to feel like a compromise on both sides."
+],
+[
+"B",
+"That's a very mature way of looking at it. I hope our paths cross again."
+],
+[
+"A",
+"So do I. I was very impressed by the team, and I'd be glad to stay in touch."
+]
+],
+"q": [
+{
+"q": "Why did the candidate call rather than send an email?",
+"a": "Because he wanted to tell the interviewer personally that he was declining the offer.",
+"k": [
+[
+"personally",
+"person"
+],
+[
+"decline",
+"declining",
+"turn down"
+]
+]
+},
+{
+"q": "What made him choose the other job?",
+"a": "Not the salary, which was fair, but the chance to lead a team from the start, which he needs at this point in his career.",
+"k": [
+[
+"lead",
+"team"
+],
+[
+"salary",
+"not the salary",
+"fair"
+]
+]
+},
+{
+"q": "Why does he not accept the offer to change the role?",
+"a": "He doesn't want the company to reshape the position around him, because it would feel like a compromise for both sides.",
+"k": [
+[
+"reshape",
+"change",
+"around me",
+"around him"
+],
+[
+"compromise"
+]
+]
+}
+],
+"gaps": [
+{
+"s": "May I ask what tipped the ___?",
+"a": "balance"
+},
+{
+"s": "The other role would let me lead a team from the ___.",
+"a": "outset"
+},
+{
+"s": "Only for it to feel like a ___ on both sides.",
+"a": "compromise"
+}
+]
+}
+]
