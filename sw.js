@@ -1,7 +1,7 @@
 /* Volt English service worker: app files are network-first (so updates arrive on refresh, offline falls back to cache); audio and icons are cache-first. */
-const CACHE = 'volt-v29';
+const CACHE = 'volt-v30';
 const SHELL = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/exercises.js', 'js/feedback.js', 'data/reading.js', 'data/reading2.js', 'data/reading3.js', 'data/rexp1.js', 'data/rexp2.js', 'data/rexp3.js', 'data/rexp4.js', 'data/vocab.js', 'data/vocab2.js', 'data/vocab3.js', 'data/grammar.js', 'data/grammar_notes.js', 'data/grammar2.js', 'data/grammar3.js', 'data/grammar4.js', 'data/grammar5.js', 'data/grammar6.js', 'data/grammar7.js', 'data/gopt1.js', 'data/gopt2.js', 'data/gopt3.js', 'data/gopt4.js',
-  'data/speaking.js', 'data/writing.js', 'data/phrasal.js', 'data/phrasal2.js', 'data/phrasal3.js', 'data/listening.json', 'data/listening2.json', 'data/listening3.json', 'data/topic_job.js', 'data/topic_job2.js', 'data/topic_job3.js', 'data/speak2_b1.js', 'data/speak2_b2.js', 'data/speak2_c1.js', 'data/listening4.json', 'data/words.txt', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+  'data/speaking.js', 'data/writing.js', 'data/phrasal.js', 'data/phrasal2.js', 'data/phrasal3.js', 'data/listening.json', 'data/listening2.json', 'data/listening3.json', 'data/topic_job.js', 'data/topic_job2.js', 'data/topic_job3.js', 'data/speak2_b1.js', 'data/speak2_b2.js', 'data/speak2_c1.js', 'data/speak2_c2.js', 'data/listening4.json', 'data/words.txt', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
