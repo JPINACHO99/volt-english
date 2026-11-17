@@ -17,7 +17,7 @@
   function itemFromRef(ref) {
     if (ref.k === 'g') return grammarItem(ref.i);
     if (ref.k === 'v') return defineItem(ref.t, ref.l, ref.i);
-    if (ref.k === 'r') { const r = D.reading.find((x) => x.id === ref.id), q = r.mc[ref.q]; return { type: 'choice', ref, context: r, prompt: q.q, options: q.o, answer: q.a, instr: 'Read the text again if you need to, then answer.' }; }
+    if (ref.k === 'r') { const r = D.reading.find((x) => x.id === ref.id), q = r.mc[ref.q]; const x = ((D.rexp || {})[r.id] || [])[ref.q] || {}; return { type: 'choice', ref, context: r, prompt: q.q, options: q.o, answer: q.a, note: x.e, optNotes: x.w, instr: 'Read the text again if you need to, then answer.' }; }
     if (ref.k === 'p') return phrasalItem(ref.i, ref.m);
     if (ref.k === 'l') { const a = D.listening.find((x) => x.id === ref.id), g = a.gaps[ref.i]; return { type: 'input', ref, audio: a, sentence: g.s, answers: [g.a], instr: 'Listen and write the exact word you hear.' }; }
   }
@@ -26,7 +26,7 @@
   function grammarItem(i) {
     const g = D.grammar[i], ref = { k: 'g', i };
     const note = g[g[0] === 'kt' ? 7 : g[0] === 'open' ? 5 : 6] || (D.gnotes || [])[i] || '';
-    if (g[0] === 'mc') return { type: 'choice', ref, note, prompt: g[3], options: g[4], answer: g[5], instr: 'Choose the correct option.' };
+    if (g[0] === 'mc') return { type: 'choice', ref, note, optNotes: (D.gopt || {})[g[3]], prompt: g[3], options: g[4], answer: g[5], instr: 'Choose the correct option.' };
     if (g[0] === 'open') return { type: 'input', ref, note, sentence: g[3], answers: g[4], instr: 'Write ONE word in the gap.' };
     if (g[0] === 'wf') return { type: 'input', ref, note, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
     return { type: 'input', ref, note, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
@@ -35,8 +35,9 @@
   function phrasalItem(i, m) {
     const p = D.phrasal[i], ref = { k: 'p', i, m }, same = D.phrasal.map((x, j) => j).filter((j) => j !== i && D.phrasal[j][1] === p[1] && D.phrasal[j][0] !== p[0]);
     const others = shuffle(same).slice(0, 3), note = p[0] + ' = ' + p[2] + '. Example: ' + pvPlain(p[3]);
-    if (m === 'm') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, say: p[0], prompt: pvPlain(p[3]), sub: 'What does “' + p[0] + '” mean here?', options: o.map((j) => D.phrasal[j][2]), answer: o.indexOf(i), instr: 'Choose the meaning of the phrasal verb.' }; }
-    if (m === 'c') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, prompt: 'Which phrasal verb means: “' + p[2] + '”?', options: o.map((j) => D.phrasal[j][0]), answer: o.indexOf(i), instr: 'Choose the phrasal verb.' }; }
+    const pvNote = (j) => (j === i ? '' : m === 'm' ? 'That is the meaning of “' + D.phrasal[j][0] + '”, as in: ' + pvPlain(D.phrasal[j][3]) : '“' + D.phrasal[j][0] + '” means ' + D.phrasal[j][2] + ', as in: ' + pvPlain(D.phrasal[j][3]));
+    if (m === 'm') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, optNotes: o.map(pvNote), say: p[0], prompt: pvPlain(p[3]), sub: 'What does “' + p[0] + '” mean here?', options: o.map((j) => D.phrasal[j][2]), answer: o.indexOf(i), instr: 'Choose the meaning of the phrasal verb.' }; }
+    if (m === 'c') { const o = shuffle([i].concat(others)); return { type: 'choice', ref, note, optNotes: o.map(pvNote), prompt: 'Which phrasal verb means: “' + p[2] + '”?', options: o.map((j) => D.phrasal[j][0]), answer: o.indexOf(i), instr: 'Choose the phrasal verb.' }; }
     const parts = p[3].match(/\[[^\]]+\]/g), particle = p[0].split(' ').slice(1).join(' ');
     let sentence;
     if (parts.length > 1) sentence = p[3].replace(parts[parts.length - 1], '___').replace(/[\[\]]/g, '');
@@ -148,6 +149,7 @@
   }
   function checkBtn(label, fn) { const b = h('button', { class: 'btn', onclick: () => fn(b) }, label || 'Check'); return h('div', { class: 'row end', style: 'margin-top:12px' }, b); }
   function hintBtn(hint) { if (!hint) return null; const b = h('button', { class: 'btn ghost', onclick: () => b.replaceWith(h('p', { class: 'muted' }, '💡 Meaning: ' + hint)) }, '💡 See the meaning'); return b; }
+  function yourAnswer(opt, note) { return note ? h('div', { class: 'fb bad' }, h('span', { class: 'tag bad' }, 'Why your answer is wrong'), h('div', null, h('b', null, opt + ': '), note)) : null; }
   function why(note) { return note ? h('div', { class: 'fb na' }, h('span', { class: 'tag na' }, 'Why'), h('div', null, note)) : null; }
   function verdictLine(ok, text) { return h('div', { class: 'fb ' + (ok ? 'good' : 'bad') }, h('span', { class: 'tag ' + (ok ? 'good' : 'bad') }, ok ? '✓ Correct' : '✗ Not quite'), text ? h('div', null, text) : null); }
 
@@ -212,7 +214,7 @@
         checkBtn('Check', (b) => {
           if (sel < 0 || done) return; done = true; b.disabled = true;
           const ok = sel === it.answer; opts[it.answer].classList.add('good'); if (!ok) opts[sel].classList.add('bad');
-          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]), why(it.note));
+          record(it.ref, ok); box.append(verdictLine(ok, ok ? '' : 'Correct answer: ' + it.options[it.answer]), ok ? null : yourAnswer(it.options[sel], (it.optNotes || [])[sel]), why(it.note));
           ctx.finish({ ok: ok ? 1 : 0, tot: 1, weak: ok ? [] : [it.prompt] });
         }));
     },
@@ -261,7 +263,12 @@
       });
       box.append(checkBtn('Check', (b) => {
         if (sel.includes(-1)) return; b.disabled = true; groups.done = true; let ok = 0; const weak = [];
-        r.mc.forEach((q, qi) => { const good = sel[qi] === q.a; groups[qi][q.a].classList.add('good'); if (!good) { groups[qi][sel[qi]].classList.add('bad'); weak.push(q.q); } else ok++; record({ k: 'r', id: r.id, q: qi }, good); });
+        const ex = (D.rexp || {})[r.id] || [];
+        r.mc.forEach((q, qi) => {
+          const good = sel[qi] === q.a, x = ex[qi] || {}; groups[qi][q.a].classList.add('good'); if (!good) { groups[qi][sel[qi]].classList.add('bad'); weak.push(q.q); } else ok++; record({ k: 'r', id: r.id, q: qi }, good);
+          const after = groups[qi][0].parentNode;
+          after.after(h('div', null, good ? null : yourAnswer(q.o[sel[qi]], (x.w || [])[sel[qi]]), why(x.e)));
+        });
         ctx.finish({ ok, tot: r.mc.length, weak });
       }));
     },

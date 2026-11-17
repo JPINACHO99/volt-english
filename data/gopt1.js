@@ -1,0 +1,42 @@
+// Why each wrong option is wrong (grammar multiple choice). Key = the sentence; "" = the correct option.
+window.DATA = window.DATA || {};
+DATA.gopt = DATA.gopt || {};
+Object.assign(DATA.gopt, {
+// ---------- B1 ----------
+"The machine ___ every morning at six.":["With he/she/it the present simple needs -s: starts.","","'Is start' mixes two tenses; there is no such form.","An -ing form needs 'is' before it, and a routine needs the present simple."],
+"You ___ touch the cables when the power is on. It's dangerous.":["","'Don't have to' means it isn't necessary, but here it is forbidden.","'Needn't' means it isn't necessary; it doesn't forbid anything.","'Might not' talks about possibility, not a prohibition."],
+"I have worked here ___ 2021.":["'For' goes with a period (for three years), not with a year.","'From' needs 'to' or 'until'; with the present perfect use 'since'.","","'During' goes with a noun like 'during the summer', not with a starting date."],
+"There isn't ___ milk in the fridge.":["'Some' is for affirmative sentences; this one is negative.","","'Many' is for countable plurals, and 'milk' is uncountable.","'A' is for singular countable nouns; 'milk' is uncountable."],
+"While the pasta ___, I prepared the sauce.":["The story is in the past, so the present doesn't fit.","Past simple is possible, but 'while' + a longer action prefers the continuous: was cooking.","","The present perfect can't be used for a finished past scene."],
+"Our team played ___ than last week.":["'Good' is an adjective; after 'played' we need an adverb, and 'than' needs a comparative.","'Best' is the superlative; 'than' needs a comparative.","'Well' is right as an adverb, but 'than' needs the comparative: better.",""],
+"How long ___ this machine?":["Questions need the auxiliary before the subject: have you used.","","After 'do' the verb goes in the base form, and 'how long' + up to now needs the present perfect.","'Are you use' is not a correct form."],
+"This tool is ___ than the old one.":["'Good' has an irregular comparative; 'more good' is not used.","'Gooder' doesn't exist; the comparative is 'better'.","","'Best' is the superlative; 'than' needs a comparative."],
+"The engineer ___ the plans when I arrived.":["The scene is in the past, so the present doesn't fit.","","The scene is in the past, so the present continuous doesn't fit.","The present perfect can't be used with 'when I arrived' (a finished past moment)."],
+"If you touch that wire, you ___ a shock.":["'Get' is possible for general truths, but this is a specific warning: will get.","The first conditional needs 'will', not the past.","","'Would' belongs to the second conditional (if + past)."],
+"There aren't ___ sockets in this room.":["'Much' is for uncountable nouns; 'sockets' is countable.","","'A lot' needs 'of' before the noun: a lot of sockets.","'Some' is for affirmative sentences; this one is negative."],
+"The power went off while we ___ dinner.":["'While' introduces the longer background action, so the continuous fits better.","The present perfect doesn't fit a past story.","","The story is in the past, so 'are having' doesn't fit."],
+"I ___ to the office by train every day.":["The continuous is for temporary actions, not daily habits.","","'Goes' is only for he/she/it.","'Going' needs an auxiliary (am going) and doesn't express a habit."],
+"She has ___ finished the report.":["'Yet' goes at the end of negatives and questions, not in this position.","","'Still' doesn't go between 'has' and the participle in affirmatives.","'Ago' is used with the past simple: two days ago."],
+"You ___ wear a tie. It's not necessary here.":["'Mustn't' means it is forbidden, but here it's only not necessary.","","'Can't' means it is not allowed or not possible.","After 'should' there is no 'to': shouldn't wear."],
+"I ___ breakfast when the phone rang.":["","The story is in the past, so the present doesn't fit.","The story is in the past, so the present continuous doesn't fit.","The present perfect doesn't fit a finished past moment."],
+"We haven't got ___ bread. Can you buy some?":["'Some' is for affirmative sentences; this one is negative.","'Haven't' is already negative; 'no' would make a double negative.","","'A' is for singular countable nouns; 'bread' is uncountable."],
+"My sister is the ___ person in my family.":["'The' + comparison with the whole family needs the superlative.","'Taller' compares two things; with 'the… in my family' use the superlative.","Short adjectives don't take 'more'; and here we need the superlative.",""],
+"You need ___ eggs to make this cake.":["'A little' is for uncountable nouns; 'eggs' is countable.","","'Much' is for uncountable nouns; 'eggs' is countable.","'Any' is mainly for negatives and questions."],
+"The soup is too hot. ___ it yet.":["","Negative imperatives need 'don't': don't eat.","Imperatives don't use 'does'.","'No' + verb is not used for a negative order."],
+"I'm going ___ a pizza tonight.":["'Be going' is followed by 'to' + infinitive.","'Going making' is not correct; use 'going to make'.","","'Made' is a past form; we need 'to' + infinitive."],
+"They ___ the match last night.":["'Last night' is finished past time; 'win' is present.","","The present perfect can't be used with 'last night'.","'Winning' needs an auxiliary and doesn't express a finished action."],
+"He plays football ___ Saturdays.":["'In' is for months, years and parts of the day (in the morning).","'At' is for clock times and the weekend.","","'By' doesn't express days of the week."],
+"I ___ to a World Cup match. I'd love to go.":["'Never went' needs a finished past time; for life experience use the present perfect.","","'Am never' isn't a correct form here.","'Never go' describes a habit, not an experience up to now."],
+"This machine is used ___ metal.":["After 'for' we need -ing: for cutting.","'Used to cutting' means 'accustomed to', which is a different meaning.","","A preposition is needed: used for cutting."],
+"There ___ a problem with the engine yesterday.":["'Yesterday' is past time, so 'is' doesn't fit.","","'Problem' is singular, so 'were' doesn't fit.","'There has' is not correct; use 'there was' or 'there has been'."],
+"Be careful! The cable ___ hot.":["'Gets' is for general truths; this is happening now.","","'Get' needs -s with 'the cable'.","'Be careful!' talks about now, so the past doesn't fit."],
+"We ___ any electricity since this morning.":["'Since this morning' (until now) needs the present perfect.","'Since' connects the past with now, so the present simple doesn't fit.","","'Hadn't' would need 'got' and talks about before another past moment."],
+"My boss wants ___ the report today.":["'Want' is not followed by 'that' + clause.","","'Want' needs 'to' before the infinitive: me to finish.","'Want' can't be followed by a full clause like 'I finish'."],
+"I ___ work on Sundays. The office is closed.":["'Mustn't' means it is forbidden; here it just isn't necessary.","","'Haven't' needs 'got to' or a participle to make sense here.","After 'can' there is no 'to'."],
+"___ you like some coffee?":["'Do you like' asks about your tastes in general, not an offer.","'Are you like' is not correct.","","'Will be' doesn't form a question with 'you like'."],
+"I usually walk to work, but today I ___ the bus.":["'Take' would describe a habit, but today is an exception.","","'Takes' is only for he/she/it.","'Took always' is incorrect: wrong tense and word order."],
+"This is the ___ pizza I have ever eaten.":["'Ever eaten' needs the superlative.","'Better' compares two things; here we need the superlative.","","'Good' has an irregular superlative: best, not 'most good'."],
+"How ___ potatoes do we need?":["'Much' is for uncountable nouns; 'potatoes' is countable.","","'Lot' needs 'a lot of' and isn't used in this question.","'Few of' is not used after 'how'."],
+"If it rains tomorrow, we ___ play.":["Talking about the future result we need 'won't'.","","'Didn't' is past; the result is in the future.","'Wouldn't' belongs to the second conditional (if + past)."],
+"He can run ___ than me.":["'Than' needs a comparative: faster.","Short words like 'fast' take -er, not 'more'.","'Fastest' is the superlative; 'than' needs a comparative.",""]
+});
