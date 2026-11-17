@@ -76,3 +76,4 @@ del{color:var(--bad)}ins{color:var(--good);text-decoration:none;font-weight:600}
 .big-emoji{font-size:2.6rem;animation:popIn .6s ease-out both}
 .confetti{position:fixed;left:50%;top:38%;width:9px;height:14px;border-radius:2px;pointer-events:none;z-index:50;animation:confetti 1.3s ease-out forwards}
 @media (prefers-reduced-motion:reduce){.opt.good,.opt.bad,.gap.good,.gap.bad,input.good,input.bad,select.good,select.bad,.fb,.big-emoji,.confetti{animation:none}.ring .fgc{transition:none}}
+.scene.art{padding:0;overflow:hidden;line-height:0;background:#fff}.scene.art svg{display:block;width:100%;height:auto}
