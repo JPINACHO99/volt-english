@@ -49,14 +49,14 @@
     else { const words = parts[0].slice(1, -1).split(' '); sentence = p[3].replace(parts[0], words[0] + ' ___'); }
     return { type: 'input', ref, note, hint: p[2], sentence, answers: [particle], instr: 'Complete the phrasal verb with the missing particle(s).' };
   }
-  function phrasalList(level) {
-    const all = D.phrasal.filter((p) => p[1] === level).sort((a, b) => a[0].localeCompare(b[0])), box = h('div');
+  function phrasalList(level, job) {
+    const all = D.phrasal.filter((p) => p[1] === level && (!job || p[4] === 'job')).sort((a, b) => a[0].localeCompare(b[0])), box = h('div');
     const draw = (q) => box.replaceChildren(all.filter((p) => !q || (p[0] + ' ' + p[2]).toLowerCase().includes(q)).map((p) => h('div', { class: 'card', style: 'margin:8px 0;padding:12px' },
       h('div', { class: 'row' }, h('b', { class: 'grow' }, p[0]), V.sayBtn(p[0]), h('button', { class: 'ic', title: 'Add to My words', onclick: (e) => { V.addMyWord(p[0], p[2], pvPlain(p[3])); e.target.textContent = '✓'; } }, '＋')),
       h('div', null, p[2]), h('div', { class: 'muted small' }, '“' + pvPlain(p[3]) + '”'))));
     const search = h('input', { type: 'text', placeholder: 'Search a verb or a meaning…', oninput: () => draw(search.value.trim().toLowerCase()) });
     draw('');
-    V.go(() => ({ title: 'Phrasal verbs · ' + level, body: [h('p', { class: 'muted' }, all.length + ' phrasal verbs at this level.'), search, box] }));
+    V.go(() => ({ title: (job ? 'Interview phrasal verbs · ' : 'Phrasal verbs · ') + level, body: [h('p', { class: 'muted' }, all.length + (job ? ' interview phrasal verbs at this level.' : ' phrasal verbs at this level.')), search, box] }));
   }
   function defineItem(t, l, i) {
     const w = D.vocab[t][l].w[i];
@@ -72,8 +72,9 @@
       return pick;
     };
     if (sec === 'phrasal') {
-      if (mode === 'list') return phrasalList(level);
-      const idx = shuffle(D.phrasal.map((p, i) => i).filter((i) => D.phrasal[i][1] === level));
+      if (mode === 'list' || mode === 'joblist') return phrasalList(level, mode === 'joblist');
+      const idx = shuffle(D.phrasal.map((p, i) => i).filter((i) => D.phrasal[i][1] === level && (mode !== 'jobpv' || D.phrasal[i][4] === 'job')));
+      if (mode === 'jobpv') items = idx.slice(0, 10).map((i, k) => phrasalItem(i, ['m', 'c', 'p'][k % 3]));
       if (mode === 'pmatch') { const g = idx.slice(0, 10); items = [g.slice(0, 5), g.slice(5, 10)].map((part) => ({ type: 'pairs', left: part.map((i) => D.phrasal[i][0]), right: part.map((i) => D.phrasal[i][2]), say: true, instr: 'Tap a phrasal verb, then tap its meaning.' })); }
       else if (mode === 'pcards') return V.startCards(idx.slice(0, 15).map((i) => { const p = D.phrasal[i]; V.srsAdd(p[0], p[2], pvPlain(p[3])); return p[0]; }));
       if (!items.length) items = idx.slice(0, 10).map((i) => phrasalItem(i, mode === 'meaning' ? 'm' : mode === 'choose' ? 'c' : 'p'));
@@ -101,7 +102,9 @@
         const p = sets[S.turns[key]]; items = [{ type: 'speak', kind: mode, prompt: p[0], model: p[1] }];
       }
     } else if (sec === 'writing') {
-      const w = D.writing[topic][level];
+      const ws = [D.writing[topic][level], ((D.writing2 || {})[topic] || {})[level]].filter(Boolean);
+      const wk = 'wr:' + topic + level + mode; S.turns = S.turns || {}; S.turns[wk] = ((S.turns[wk] || 0) + 1) % ws.length; V.save();
+      const w = ws[S.turns[wk]];
       items = [mode === 'essay' ? { type: 'write', wtype: 'essay', prompt: w.essay[0], model: w.essay[1] } : { type: 'write', wtype: w.task[0], prompt: w.task[1], model: w.task[2] }];
     }
     items = items.filter((x) => x && (x.type.indexOf('listen') ? true : x.a) && (/readmc|gaptext|match/.test(x.type) ? x.r : true));
