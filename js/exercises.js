@@ -95,7 +95,11 @@
       const sc = D.scenes[topic];
       if (mode === 'describe') { const s = sc[Math.floor(Math.random() * 2)]; items = [{ type: 'speak', kind: 'describe', prompt: 'Describe this picture in as much detail as you can. Say what you can see, what is probably happening and how the people might feel.', scenes: [s], model: s.model }]; }
       else if (mode === 'compare') items = [{ type: 'speak', kind: 'compare', prompt: D.compareQ[topic], scenes: sc, model: D.compareModel }];
-      else { const p = D.speak[topic][level][mode]; items = [{ type: 'speak', kind: mode, prompt: p[0], model: p[1] }]; }
+      else {
+        const sets = [D.speak[topic][level][mode], (((D.speak2 || {})[topic] || {})[level] || {})[mode]].filter(Boolean);
+        const key = 'sp:' + topic + level + mode; S.turns = S.turns || {}; S.turns[key] = ((S.turns[key] || 0) + 1) % sets.length; V.save();
+        const p = sets[S.turns[key]]; items = [{ type: 'speak', kind: mode, prompt: p[0], model: p[1] }];
+      }
     } else if (sec === 'writing') {
       const w = D.writing[topic][level];
       items = [mode === 'essay' ? { type: 'write', wtype: 'essay', prompt: w.essay[0], model: w.essay[1] } : { type: 'write', wtype: w.task[0], prompt: w.task[1], model: w.task[2] }];
