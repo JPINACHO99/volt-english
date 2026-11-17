@@ -1,0 +1,62 @@
+[
+{"id":"job_B1","t":"job","l":"B1","title":"A short interview","lines":[
+["B","Good morning, Mr Lopez. Please sit down. Thank you for coming."],
+["A","Good morning. Thank you for inviting me."],
+["B","So, tell me a little about yourself."],
+["A","Well, I'm twenty-six and I finished my studies two years ago. Since then I have worked in a small electrical company."],
+["B","And why do you want to work for us?"],
+["A","Your company is bigger, and I want to learn more. I also like that you work with solar energy."],
+["B","Are you happy to work at weekends sometimes?"],
+["A","Yes, no problem, if I know before."],
+["B","Very good. We will call you on Friday with our answer."]],
+"q":[
+{"q":"What has the man done since he finished his studies?","a":"He has worked in a small electrical company for two years.","k":[["electrical","company"],["two years","since"]]},
+{"q":"Why does he want to work for this company?","a":"Because it is bigger, he wants to learn more, and he likes that they work with solar energy.","k":[["bigger","learn"],["solar"]]},
+{"q":"What does he say about working at weekends, and when will they call him?","a":"He is happy to do it if he knows before; they will call him on Friday.","k":[["weekends","no problem","happy","yes"],["friday"]]}],
+"gaps":[{"s":"Thank you for ___ me.","a":"inviting"},{"s":"I also like that you work with ___ energy.","a":"solar"},{"s":"We will call you on ___ with our answer.","a":"Friday"}]},
+
+{"id":"job_B2","t":"job","l":"B2","title":"Tell me about a challenge","lines":[
+["B","Could you give me an example of a problem you had to solve at work?"],
+["A","Sure. Last year, a supplier told us two days before an installation that the panels we had ordered weren't available."],
+["B","That sounds stressful. What did you do?"],
+["A","First, I called three other suppliers and found one who could deliver similar panels, although they were slightly more expensive."],
+["B","How did the client react?"],
+["A","I called the client straight away, explained the situation and offered to pay the difference ourselves. They were grateful we'd been honest, and the installation finished on time."],
+["B","And what did you learn from it?"],
+["A","That it's better to communicate bad news early. If I'd waited, the client would have lost confidence in us."]],
+"q":[
+{"q":"What problem did the candidate face?","a":"Two days before an installation, a supplier said the panels they had ordered were not available.","k":[["supplier","panels"],["not available","weren't available","unavailable","two days"]]},
+{"q":"How did he solve it?","a":"He called three other suppliers and found one who could deliver similar panels, slightly more expensive, and offered to pay the difference.","k":[["other suppliers","suppliers","another supplier"],["difference","expensive","pay"]]},
+{"q":"What lesson did he learn?","a":"That it is better to communicate bad news early; waiting would have made the client lose confidence.","k":[["early","communicate","bad news"],["confidence","trust"]]}],
+"gaps":[{"s":"I called three other ___.","a":"suppliers"},{"s":"They were ___ we'd been honest.","a":"grateful"},{"s":"The client would have lost ___ in us.","a":"confidence"}]},
+
+{"id":"job_C1","t":"job","l":"C1","title":"Discussing the salary","lines":[
+["B","We'd like to offer you the position. The starting salary would be thirty-eight thousand a year."],
+["A","Thank you, I'm delighted. I'm very keen on the role. Before accepting, though, could we talk about the salary?"],
+["B","Of course. What did you have in mind?"],
+["A","Based on my experience and on what similar positions pay in the region, I was expecting something closer to forty-two."],
+["B","I see. I'm afraid our budget for this grade is fairly fixed, but there may be some room elsewhere."],
+["A","I'd be open to that. What kind of flexibility are you thinking of?"],
+["B","We could review your salary after six months instead of twelve, and add five extra days of training a year."],
+["A","That's a fair proposal. If the review after six months could be put in writing, I'd be happy to accept."]],
+"q":[
+{"q":"How much was offered and how much did the candidate expect?","a":"Thirty-eight thousand a year was offered; he expected something closer to forty-two thousand.","k":[["thirty-eight","38"],["forty-two","42"]]},
+{"q":"Why can't the company simply raise the salary, and what does it offer instead?","a":"Its budget for that grade is fairly fixed, so it offers a salary review after six months instead of twelve and five extra days of training a year.","k":[["budget","fixed"],["six months","review","training"]]},
+{"q":"On what condition does the candidate accept?","a":"That the review after six months is put in writing.","k":[["writing","written"],["review","six months"]]}],
+"gaps":[{"s":"I'm very ___ on the role.","a":"keen"},{"s":"Our budget for this ___ is fairly fixed.","a":"grade"},{"s":"That's a ___ proposal.","a":"fair"}]},
+
+{"id":"job_C2","t":"job","l":"C2","title":"The stress interview","lines":[
+["B","I'll be blunt. Your CV is solid, but frankly unremarkable. Why should we choose you over candidates with more experience?"],
+["A","That's a fair challenge. Experience is valuable, but it isn't the same as results. In three years, I've cut design times in my department by a third, which is more than some people achieve in a decade."],
+["B","You moved jobs after only eighteen months. Isn't that a sign you get bored easily?"],
+["A","I'd put it differently. I left because the company was being restructured and my project was cancelled. I stayed until it was handed over properly, and my former manager would happily confirm that."],
+["B","Suppose your boss asked you to sign off a design you believed was unsafe. What would you do?"],
+["A","I'd refuse, explain my reasons in writing, and propose an alternative. My signature means something only if I'm prepared to withhold it."],
+["B","Thank you. I should tell you that this interview was deliberately confrontational. We wanted to see how you handle pressure."],
+["A","I rather suspected as much. I hope I passed the test."]],
+"q":[
+{"q":"How does the candidate answer the claim that his CV is unremarkable?","a":"He says experience is not the same as results, and points out that he cut design times in his department by a third in three years.","k":[["results","experience"],["third","design times"]]},
+{"q":"How does he explain leaving his previous job after eighteen months?","a":"The company was restructured and his project cancelled; he stayed until it was properly handed over, and his former manager would confirm it.","k":[["restructured","restructuring","cancelled"],["handed over","manager","confirm"]]},
+{"q":"What did the interviewer reveal at the end, and how did the candidate react?","a":"That the interview had been deliberately confrontational to test how he handles pressure; he says he suspected as much.","k":[["deliberately","confrontational","pressure","test"],["suspected"]]}],
+"gaps":[{"s":"Your CV is solid, but frankly ___.","a":"unremarkable"},{"s":"My signature means something only if I'm prepared to ___ it.","a":"withhold"},{"s":"This interview was deliberately ___.","a":"confrontational"}]}
+]

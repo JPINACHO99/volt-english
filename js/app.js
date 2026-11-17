@@ -4,7 +4,7 @@
   const V = (window.V = {});
   const D = window.DATA;
   const TOPICS = (V.TOPICS = [{ id: 'eng', n: 'Engineering', e: '⚙️' }, { id: 'elec', n: 'Electricity', e: '⚡' }, { id: 'work', n: 'Work', e: '💼' },
-    { id: 'daily', n: 'Daily life', e: '🏠' }, { id: 'cook', n: 'Cooking', e: '🍳' }, { id: 'foot', n: 'Football', e: '⚽' }]);
+    { id: 'daily', n: 'Daily life', e: '🏠' }, { id: 'cook', n: 'Cooking', e: '🍳' }, { id: 'foot', n: 'Football', e: '⚽' }, { id: 'job', n: 'Job interviews', e: '🤝' }]);
   const LEVELS = ['B1', 'B2', 'C1', 'C2'];
   const LEVEL_NAME = { B1: 'Intermediate', B2: 'Upper-intermediate', C1: 'Advanced', C2: 'Proficiency' };
   const SECTIONS = (V.SECTIONS = [
@@ -246,7 +246,7 @@
   V.boot = async function () {
     document.documentElement.setAttribute('data-theme', S.theme);
     D.listening = [];
-    for (const f of ['data/listening.json', 'data/listening2.json']) { try { D.listening = D.listening.concat(await (await fetch(f)).json()); } catch (e) { /* skip */ } }
+    for (const f of ['data/listening.json', 'data/listening2.json', 'data/listening3.json']) { try { D.listening = D.listening.concat(await (await fetch(f)).json()); } catch (e) { /* skip */ } }
     window.FB.loadWords();
     history.replaceState({ n: 1 }, '');
     stack.push(homeView); render();
