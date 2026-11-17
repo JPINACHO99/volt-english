@@ -19,6 +19,7 @@
     if (ref.k === 'v') return defineItem(ref.t, ref.l, ref.i);
     if (ref.k === 'r') { const r = D.reading.find((x) => x.id === ref.id), q = r.mc[ref.q]; const x = ((D.rexp || {})[r.id] || [])[ref.q] || {}; return { type: 'choice', ref, context: r, prompt: q.q, options: q.o, answer: q.a, note: x.e, optNotes: x.w, instr: 'Read the text again if you need to, then answer.' }; }
     if (ref.k === 'p') return phrasalItem(ref.i, ref.m);
+    if (ref.k === 'q') return quizItem(ref.i);
     if (ref.k === 'l') { const a = D.listening.find((x) => x.id === ref.id), g = a.gaps[ref.i]; return { type: 'input', ref, audio: a, sentence: g.s, answers: [g.a], instr: 'Listen and write the exact word you hear.' }; }
   }
 
@@ -30,6 +31,11 @@
     if (g[0] === 'open') return { type: 'input', ref, note, sentence: g[3], answers: g[4], instr: 'Write ONE word in the gap.' };
     if (g[0] === 'wf') return { type: 'input', ref, note, sentence: g[3], root: g[4], answers: g[5], instr: 'Use the word in capitals to form a word that fits the gap.' };
     return { type: 'input', ref, note, pre: g[3], root: g[4], sentence: g[5], answers: g[6], instr: 'Complete the second sentence so that it means the same as the first. Use the word given without changing it (2–6 words).' };
+  }
+  const CAT = { geo: 'Geography', hist: 'History', sci: 'Science & nature', arts: 'Arts & literature' };
+  function quizItem(i, cat) {
+    const q = D.quiz[i], order = shuffle([0, 1, 2, 3]);
+    return { type: 'choice', ref: { k: 'q', i }, prompt: q[2], sub: cat ? CAT[q[1]] : null, options: order.map((j) => q[3][j]), answer: order.indexOf(0), note: q[4], instr: 'Choose the correct answer.' };
   }
   function judgeItem(i) {
     const g = D.grammar[i], wrong = [0, 1, 2, 3].filter((k) => k !== g[5]), use = Math.random() < 0.5 ? g[5] : wrong[Math.floor(Math.random() * 3)];
@@ -91,6 +97,7 @@
       else if (mode === 'cards') return V.startCards(D.vocab[topic][level].w.map((w) => { V.srsAdd(w[0], w[1], w[2]); return w[0]; }));
       else { const c2 = D.vocab[topic][level], n2 = c2.para3 ? 3 : c2.para2 ? 2 : 1; S.paraTurn = ((S.paraTurn || 0) + 1) % 3; items = [{ type: 'gappara', t: topic, l: level, bank: mode === 'bank', which: S.paraTurn % n2 }]; }
     } else if (sec === 'reading') items = [{ type: mode === 'mc' ? 'readmc' : mode === 'gapped' ? 'gaptext' : 'match', r: cell(D.reading) }];
+    else if (sec === 'culture') items = shuffle(D.quiz.map((q, i) => i).filter((i) => D.quiz[i][0] === level && (mode === 'mix' || D.quiz[i][1] === mode))).slice(0, mode === 'mix' ? 10 : 8).map((i) => quizItem(i, mode === 'mix'));
     else if (sec === 'watch') { const vs = (D.videos || []).filter((v) => v.l === level); S.vidTurn = S.vidTurn || {}; S.vidTurn[level] = ((S.vidTurn[level] || 0) + 1) % Math.max(1, vs.length); V.save(); items = vs.length ? [{ type: 'watch', a: vs[S.vidTurn[level]] }] : []; }
     else if (sec === 'listening') items = [{ type: mode === 'open' ? 'listenopen' : mode === 'who' ? 'listenwho' : 'listengaps', a: cell(D.listening) }];
     else if (sec === 'speaking') {
